@@ -1,0 +1,44 @@
+.slick-slide>div {
+  margin: 5px 7px;
+}
+
+.slick-list {
+  margin: 5px -10px;
+}
+
+.slick-arrow.slick-prev {
+  left: 0px;
+  background: transparent;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  z-index: 1;
+}
+
+.slick-arrow.slick-next {
+  right: 0px;
+  background: transparent;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 1;
+}
+
+.slick-prev {
+  position: relative;
+  border-bottom-right-radius: 7px;
+  border-top-right-radius: 7px;
+}
+
+.slick-next {
+
+  border-bottom-left-radius: 7px;
+  border-top-left-radius: 7px;
+}
+
+.slick-prev::before,
+.slick-next::before {
+  display: none;
+}
