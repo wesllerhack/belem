@@ -11,20 +11,32 @@ import dados from '../../dados.js';
 
 import { Container, Content, Title, PercentSquare, ContentBar } from './styles'
 const CardCampoResultados = () => {
-  const { setObjetivo, setIndicador, indicador } = useContext(InContext);
+  const { setObjetivo, setIndicador, dadosIndicador, setDadosIndicador } = useContext(InContext);
 
 
   const handleObjetivo = useCallback((info: any) => {
     setObjetivo(info);
   }, []);
 
+  const handleIndicador = useCallback((info: any) => {
+    setIndicador(info);
+  }, []);
+
+  const handleDadosIndicador = useCallback((info: any) => {
+    setDadosIndicador(info);
+  }, []);
+
   return (
     <>
-      {dados.map((value: any, _index: any) => (
+      {dados.map((value: any, index: any) => (
 
         <Container
           style={{ background: value.color }}
-          onClick={() => handleObjetivo(value.id_objetivo_estrategico)}
+          onClick={() => {
+            handleObjetivo(value.id_objetivo_estrategico)
+            handleIndicador(value.id_objetivo_estrategico[0].id_indicador)
+            handleDadosIndicador(value.id_objetivo_estrategico[0].id_indicador[0].id_dado)
+          }}
         >
           <Content >
             <Title>

@@ -14,7 +14,7 @@ interface arrowProps {
   onClick?: any;
 }
 
-const SampleNextArrow = (props: arrowProps) => {
+const NextArrow = (props: arrowProps) => {
 
   const { className, onClick } = props;
   return (
@@ -23,7 +23,7 @@ const SampleNextArrow = (props: arrowProps) => {
     </div>
   );
 }
-const SamplePrevArrow = (props: arrowProps) => {
+const PrevArrow = (props: arrowProps) => {
   const { className, onClick } = props
   return (
     <div className={className} onClick={onClick}>
@@ -53,8 +53,8 @@ const Indicador = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
   };
 
   return (
@@ -62,9 +62,9 @@ const Indicador = () => {
       <h2>Indicador</h2>
       <div>
         <SliderIndicador {...settings}>
-          {obj.map((value) => (
-            <div>
-              <h3>{value}</h3>
+          {indicador.map((value: any, index: any) => (
+            <div key={index}>
+              <h3>{value.descricao}</h3>
             </div>
           ))}
         </SliderIndicador>

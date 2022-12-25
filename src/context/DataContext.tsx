@@ -5,6 +5,8 @@ interface InContextData {
   objetivo: any;
   indicador: any;
   setIndicador: any;
+  dadosIndicador: any;
+  setDadosIndicador: any;
 }
 
 
@@ -14,11 +16,12 @@ export const InContext = createContext<InContextData>({} as InContextData);
 export const DataContext: React.FC<PropsWithChildren> = ({ children }) => {
   const [objetivo, setObjetivo] = useState([]);
   const [indicador, setIndicador] = useState([]);
+  const [dadosIndicador, setDadosIndicador] = useState([]);
 
 
   return (
     <InContext.Provider
-      value={{ objetivo, setObjetivo, indicador, setIndicador }}
+      value={{ objetivo, setObjetivo, indicador, setIndicador, dadosIndicador, setDadosIndicador }}
     >
       {children}
     </InContext.Provider>

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 
 export const Container = styled.div`
@@ -13,6 +13,10 @@ export const Container = styled.div`
   color: #fff;
   cursor: pointer;
   box-shadow: 0px 0px 33px -5px rgba(0,0,0,0.94);
+
+
+
+
 `;
 
 export const Content = styled.div`

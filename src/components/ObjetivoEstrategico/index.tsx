@@ -14,18 +14,25 @@ import 'slick-carousel/slick/slick-theme.css';
 interface arrowProps {
   className?: any;
   onClick?: any;
+  onSwipe: any;
 }
 
-const SampleNextArrow = (props: arrowProps) => {
+const NextArrow = (props: arrowProps) => {
+  const { objetivo, setIndicador } = useContext(InContext);
+
+  const handleIndicador = useCallback((info: any) => {
+    setIndicador(info)
+    console.log(info)
+  }, []);
 
   const { className, onClick } = props;
   return (
-    <div className={className} onClick={onClick}>
+    <div className={className} onClick={onClick} >
       <AiOutlineArrowRight style={{ color: "black", fontSize: "30px" }} />
-    </div>
+    </div >
   );
 }
-const SamplePrevArrow = (props: arrowProps) => {
+const PrevArrow = (props: arrowProps) => {
   const { className, onClick } = props
   return (
     <div className={className} onClick={onClick}>
@@ -33,7 +40,6 @@ const SamplePrevArrow = (props: arrowProps) => {
     </div>
   );
 }
-
 
 const ObjetivoEstrategico = () => {
   const { objetivo, setIndicador } = useContext(InContext);
@@ -43,33 +49,24 @@ const ObjetivoEstrategico = () => {
     console.log(info)
   }, []);
 
-  const obj = [
-    "Vendas do Varejo",
-    "Dispor de Lideranças de Alta Performance",
-    "Melhorar Clima Organizacional",
-    "Retenção",
-    "Custos com Pessoas"
-  ]
-
-
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    nextArrow: <NextArrow onSwipe={() => { console.log('clicounext') }} />,
+    prevArrow: <PrevArrow onSwipe={() => { console.log('anterior') }} />,
   };
 
   return (
     <Container>
       <h2>Objetivo Estratégico</h2>
       <div>
-        <SliderOjetivo {...settings}>
+        <SliderOjetivo {...settings} >
           {objetivo.map((value: any, index: any) => (
             <div key={index}>
-              <h3 onClick={() => handleIndicador(value.id_indecador)}>{value.descricao}</h3>
+              <h3>{value.descricao}</h3>
             </div>
           ))}
         </SliderOjetivo>
