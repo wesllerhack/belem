@@ -42,6 +42,7 @@ export const Title = styled.div`
 
 `;
 export const PercentSquare = styled.div`
+  margin-left: 15px;
 
   div {
     font-size: 20px;

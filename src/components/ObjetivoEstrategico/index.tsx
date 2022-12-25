@@ -45,8 +45,7 @@ const ObjetivoEstrategico = () => {
   const { objetivo, setIndicador } = useContext(InContext);
 
   const handleIndicador = useCallback((info: any) => {
-    setIndicador(info)
-    console.log(info)
+    console.log('clicounext')
   }, []);
 
   const settings = {
@@ -55,7 +54,7 @@ const ObjetivoEstrategico = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    nextArrow: <NextArrow onSwipe={() => { console.log('clicounext') }} />,
+    nextArrow: <NextArrow onSwipe={() => { handleIndicador() }} />,
     prevArrow: <PrevArrow onSwipe={() => { console.log('anterior') }} />,
   };
 

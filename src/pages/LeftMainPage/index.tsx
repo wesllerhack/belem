@@ -2,6 +2,7 @@ import React from 'react'
 
 import logoImg from '../../assets/logo.png'
 import OptionsLeftSide from '../../components/OptionsLeftSide';
+import UserSide from '../../components/UserSide';
 
 import { Container } from './styles';
 const LeftMainPage = () => {
