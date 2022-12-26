@@ -1,12 +1,11 @@
 import React, { useMemo, useState, useContext, useCallback, useEffect } from 'react'
 
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
+import { IoMdAdd } from 'react-icons/io'
 
 import { Container, SliderOjetivo } from './styles'
-import { InContext } from '../../context/DataContext.js';
+import { InContext } from '../../../context/DataContext.js';
 
-
-import './styles.css'
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -73,7 +72,11 @@ const ObjetivoEstrategico: React.FC = () => {
 
   return (
     <Container>
-      <h2>Objetivo Estratégico</h2>
+      <p>
+        <h2>Objetivo Estratégico</h2>
+        <IoMdAdd />
+      </p>
+
       <div>
         {!!objetivo ?
           <SliderOjetivo afterChange={index => { setObjetivoAtual(index) }} {...settings} >

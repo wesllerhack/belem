@@ -4,8 +4,10 @@ import { FiTarget } from 'react-icons/fi'
 import { GrCompliance, GrTask } from 'react-icons/gr'
 import { GiWeight } from 'react-icons/gi'
 import { MdAutoGraph } from 'react-icons/md'
+import { IoMdAdd } from 'react-icons/io'
 
-import { InContext } from '../../context/DataContext.js';
+
+import { InContext } from '../../../context/DataContext.js';
 
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -26,7 +28,10 @@ const DadosIndicador = () => {
   const percentage = 65;
   return (
     <Container>
-      <h2>Dados dos Indicadores</h2>
+      <p>
+        <h2>Dados dos Indicadores</h2>
+        <IoMdAdd />
+      </p>
       <Content>
         <Dados>
           <Indicador>

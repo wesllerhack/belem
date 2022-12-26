@@ -1,9 +1,10 @@
 import React, { useCallback, useContext, useEffect } from 'react'
 
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
+import { IoMdAdd } from 'react-icons/io'
 
 import { Container, SliderIndicador } from './styles'
-import { InContext } from '../../context/DataContext.js';
+import { InContext } from '../../../context/DataContext.js';
 
 
 import 'slick-carousel/slick/slick.css';
@@ -59,7 +60,10 @@ const Indicador = () => {
 
   return (
     <Container>
-      <h2>Indicador</h2>
+      <p>
+        <h2>Indicador</h2>
+        <IoMdAdd />
+      </p>
       <div>
         <SliderIndicador afterChange={index => { setIndicadorAtual(index) }}  {...settings}>
           {indicador.map((value: any, index: any) => (

@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react'
+import { Link } from 'react-router-dom'
 
 import { VscGraph } from 'react-icons/vsc'
 import { MdOutlinePlaylistAdd } from 'react-icons/md'
@@ -7,25 +8,23 @@ import { FaUserEdit } from 'react-icons/fa'
 import { Container, OptionsLi } from './styles';
 
 interface OptionsProps {
-  selected: Boolean;
-  isSelected: Boolean;
+  isSelected: Number;
+  setIsSelected: Number;
 }
 
 const OptionsLeftSide = () => {
-  const [isSelected, setIsSelected] = useState(false);
+  const [isSelected, setIsSelected] = useState(1);
 
-  const handleOptionSelected = useCallback(() => {
-    setIsSelected(true);
-  }, []);
+
 
   return (
-    <Container>
+    <Container selected={isSelected}>
       <ul>
         <OptionsLi  >
-          <VscGraph /><span>Dashboard</span>
+          <Link to="/dashboard" onClick={() => setIsSelected(1)} ><VscGraph /><span>Dashboard</span></Link>
         </OptionsLi>
         <OptionsLi  >
-          <MdOutlinePlaylistAdd /><span>Cadastro</span>
+          <Link to="/cadastro" onClick={() => setIsSelected(2)}><MdOutlinePlaylistAdd /><span>Cadastro</span></Link>
         </OptionsLi>
         <OptionsLi  >
           <FaUserEdit /><span>Perfil</span>

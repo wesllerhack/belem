@@ -1,4 +1,4 @@
-import React, { createContext, PropsWithChildren, useContext, useState } from 'react'
+import React, { createContext, PropsWithChildren, useCallback, useContext, useEffect, useState } from 'react'
 
 interface InContextData {
   setObjetivo: any;
@@ -7,6 +7,10 @@ interface InContextData {
   setIndicador: any;
   dadosIndicador: any;
   setDadosIndicador: any;
+  objetivoAtual: any;
+  setObjetivoAtual: any;
+  indicadorAtual: any;
+  setIndicadorAtual: any;
 }
 
 
@@ -18,10 +22,25 @@ export const DataContext: React.FC<PropsWithChildren> = ({ children }) => {
   const [indicador, setIndicador] = useState([]);
   const [dadosIndicador, setDadosIndicador] = useState([]);
 
+  const [objetivoAtual, setObjetivoAtual] = useState(0);
+  const [indicadorAtual, setIndicadorAtual] = useState(0);
+
+
 
   return (
     <InContext.Provider
-      value={{ objetivo, setObjetivo, indicador, setIndicador, dadosIndicador, setDadosIndicador }}
+      value={{
+        objetivo,
+        setObjetivo,
+        indicador,
+        setIndicador,
+        dadosIndicador,
+        setDadosIndicador,
+        objetivoAtual,
+        setObjetivoAtual,
+        indicadorAtual,
+        setIndicadorAtual
+      }}
     >
       {children}
     </InContext.Provider>

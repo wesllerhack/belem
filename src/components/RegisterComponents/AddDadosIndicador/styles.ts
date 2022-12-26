@@ -10,9 +10,26 @@ export const Container = styled.div`
   width: 100%;
   height: 230px;
   margin-top: 20px;
-  //background: yellow;
+
+  p {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    svg {
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+      border-radius: 35%;
+      font-size: 30px;
+      background: blue;
+      color: #fff;
+      padding: 4px;
+    }
+  }
 
   h2 {
+    white-space: pre;
     flex: 0;
     color: gray;
   }

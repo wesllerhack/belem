@@ -1,10 +1,10 @@
 import styled, { css } from "styled-components";
 
 interface ContainerProps {
-  selected: boolean;
+  selected?: Number;
 }
 
-export const Container = styled.div`
+export const Container = styled.div<ContainerProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,8 +27,17 @@ export const OptionsLi = styled.li`
   color: gray;
   cursor: pointer;
 
+  a{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    text-decoration: none;
+    color: gray;
 
-  &:first-child{
+  }
+
+
+  &:nth-child(1){
       svg  {
       border-radius: 30%;
       background: #25316D;

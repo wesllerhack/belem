@@ -1,13 +1,13 @@
 import React, { useCallback, useContext, useEffect } from 'react'
 import { FaStoreAlt } from 'react-icons/fa'
 import { TbUsers } from 'react-icons/tb'
-import { InContext } from '../../context/DataContext.js';
+import { InContext } from '../../../context/DataContext.js';
 
-import { useToast } from '../../context/toast.js';
+import { useToast } from '../../../context/toast.js';
 
 import ProgressBar from "@ramonak/react-progress-bar";
 
-import dados from '../../dados.js';
+import dados from '../../../dados.js';
 
 
 import { Container, Content, Title, PercentSquare, ContentBar } from './styles'

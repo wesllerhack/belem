@@ -1,7 +1,7 @@
 import React from 'react'
 
-import SelectPeriodo from '../../components/SelectPeriodo';
-import CardCampoResultados from '../../components/CardCampoResultado';
+import SelectPeriodo from '../../../components/SelectPeriodo';
+import CardCampoResultados from '../../../components/CardCampoResultado';
 
 
 import { Container } from './styles';
