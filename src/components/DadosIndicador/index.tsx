@@ -14,7 +14,6 @@ import { Container, Content, Dados, Indicador, Percent } from './styles'
 const DadosIndicador = () => {
   const { dadosIndicador } = useContext(InContext);
 
-  console.log(dadosIndicador)
   if (dadosIndicador.length < 1) {
     dadosIndicador.realizado1 = 0
     dadosIndicador.realizado2 = 0

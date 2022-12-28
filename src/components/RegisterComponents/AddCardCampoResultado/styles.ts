@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { shade } from 'polished';
+
 import DatePicker from 'react-datepicker';
 
 
@@ -20,14 +22,21 @@ export const Container = styled.div`
     background: transparent;
     border: none;
 
+
+
     svg {
     cursor: pointer;
 
     border-radius: 35%;
     font-size: 30px;
-    background: blue;
+    background: #0919e8;
     color: #fff;
     padding: 10px;
+    transition: background-color 0.2s;
+
+    &:hover {
+    background: ${shade(0.2, '#102a73')};
+    }
   }
   }
 

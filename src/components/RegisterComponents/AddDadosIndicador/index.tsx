@@ -4,7 +4,7 @@ import { FiTarget } from 'react-icons/fi'
 import { GrCompliance, GrTask } from 'react-icons/gr'
 import { GiWeight } from 'react-icons/gi'
 import { MdAutoGraph } from 'react-icons/md'
-import { IoMdAdd } from 'react-icons/io'
+import ModalCadastroDadosIndicador from '../../ModalCadastro/ModalCadastroDadosIndicador/index.js'
 
 
 import { InContext } from '../../../context/DataContext.js';
@@ -30,7 +30,7 @@ const DadosIndicador = () => {
     <Container>
       <p>
         <h2>Dados dos Indicadores</h2>
-        <IoMdAdd />
+        <ModalCadastroDadosIndicador />
       </p>
       <Content>
         <Dados>

@@ -5,7 +5,7 @@ import { IoMdAdd } from 'react-icons/io'
 
 import { Container, SliderIndicador } from './styles'
 import { InContext } from '../../../context/DataContext.js';
-
+import ModalCadastroIndicador from '../../ModalCadastro/ModalCadastroIndicador';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -62,7 +62,7 @@ const Indicador = () => {
     <Container>
       <p>
         <h2>Indicador</h2>
-        <IoMdAdd />
+        <ModalCadastroIndicador />
       </p>
       <div>
         <SliderIndicador afterChange={index => { setIndicadorAtual(index) }}  {...settings}>

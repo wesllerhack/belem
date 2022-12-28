@@ -11,6 +11,10 @@ interface InContextData {
   setObjetivoAtual: any;
   indicadorAtual: any;
   setIndicadorAtual: any;
+  digitado: any;
+  setDigitado: any;
+  isSelected: Number;
+  setIsSelected: any;
 }
 
 
@@ -25,6 +29,8 @@ export const DataContext: React.FC<PropsWithChildren> = ({ children }) => {
   const [objetivoAtual, setObjetivoAtual] = useState(0);
   const [indicadorAtual, setIndicadorAtual] = useState(0);
 
+  const [digitado, setDigitado] = useState('');
+  const [isSelected, setIsSelected] = useState(1);
 
 
   return (
@@ -39,7 +45,11 @@ export const DataContext: React.FC<PropsWithChildren> = ({ children }) => {
         objetivoAtual,
         setObjetivoAtual,
         indicadorAtual,
-        setIndicadorAtual
+        setIndicadorAtual,
+        digitado,
+        setDigitado,
+        isSelected,
+        setIsSelected
       }}
     >
       {children}

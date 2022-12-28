@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useContext, useCallback, useEffect } from 'react'
 
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
-import { IoMdAdd } from 'react-icons/io'
+import ModalCadastroObjetivoEstrategico from '../../ModalCadastro/ModalCadastroObjetivo';
 
 import { Container, SliderOjetivo } from './styles'
 import { InContext } from '../../../context/DataContext.js';
@@ -74,7 +74,7 @@ const ObjetivoEstrategico: React.FC = () => {
     <Container>
       <p>
         <h2>Objetivo Estratégico</h2>
-        <IoMdAdd />
+        <ModalCadastroObjetivoEstrategico />
       </p>
 
       <div>

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { shade } from "polished";
 import Slider from 'react-slick';
 
 
@@ -16,15 +16,30 @@ export const Container = styled.div`
     align-items: center;
     justify-content: space-between;
 
-    svg {
-      cursor: pointer;
+    button {
+      margin-right: 10px;
       width: 20px;
       height: 20px;
-      border-radius: 35%;
-      font-size: 30px;
-      background: blue;
-      color: #fff;
-      padding: 4px;
+      background: transparent;
+      border: none;
+
+
+
+      svg {
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        border-radius: 35%;
+        font-size: 30px;
+        background: blue;
+        color: #fff;
+        padding: 4px;
+        transition: background-color 0.2s;
+
+        &:hover {
+        background: ${shade(0.2, '#102a73')};
+        }
+      }
     }
   }
 

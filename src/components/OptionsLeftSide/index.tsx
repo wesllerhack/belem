@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useContext } from 'react'
 import { Link } from 'react-router-dom'
 
 import { VscGraph } from 'react-icons/vsc'
@@ -6,6 +6,7 @@ import { MdOutlinePlaylistAdd } from 'react-icons/md'
 import { FaUserEdit } from 'react-icons/fa'
 
 import { Container, OptionsLi } from './styles';
+import { InContext } from '../../context/DataContext'
 
 interface OptionsProps {
   isSelected: Number;
@@ -13,22 +14,21 @@ interface OptionsProps {
 }
 
 const OptionsLeftSide = () => {
-  const [isSelected, setIsSelected] = useState(1);
-
+  const { isSelected, setIsSelected } = useContext(InContext);
 
 
   return (
     <Container selected={isSelected}>
       <ul>
-        <OptionsLi  >
+        <li  >
           <Link to="/dashboard" onClick={() => setIsSelected(1)} ><VscGraph /><span>Dashboard</span></Link>
-        </OptionsLi>
-        <OptionsLi  >
+        </li>
+        <li  >
           <Link to="/cadastro" onClick={() => setIsSelected(2)}><MdOutlinePlaylistAdd /><span>Cadastro</span></Link>
-        </OptionsLi>
-        <OptionsLi  >
+        </li>
+        <li  >
           <FaUserEdit /><span>Perfil</span>
-        </OptionsLi>
+        </li>
       </ul>
     </Container>
   )
