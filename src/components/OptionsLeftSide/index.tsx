@@ -5,7 +5,7 @@ import { VscGraph } from 'react-icons/vsc'
 import { MdOutlinePlaylistAdd } from 'react-icons/md'
 import { FaUserEdit } from 'react-icons/fa'
 
-import { Container, OptionsLi } from './styles';
+import { Container } from './styles';
 import { InContext } from '../../context/DataContext'
 
 interface OptionsProps {

@@ -1,26 +1,52 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
 
-import Select from 'react-select';
+import api from '../../../services/api.js';
 
 import ButtonAdicionar from '../../ButtonAdicionar';
 import Input from '../../Input';
 import { IoMdAdd, IoMdClose } from 'react-icons/io'
-import { FiLock } from 'react-icons/fi'
 
 import ProgressBar from "@ramonak/react-progress-bar";
 
-import { SliderPicker } from 'react-color';
+
+import { HexColorPicker } from "react-colorful";
 
 import { ModalCampo, TitleModal, SelectModal, Card, Content, Title, PercentSquare, ContentBar } from './styles';
 import { InContext } from '../../../context/DataContext';
+import { useToast } from '../../../context/toast.js';
+import { useCallback } from 'react';
 
 
 const ModalCadastroCampoResultado = () => {
   const { digitado, setDigitado } = useContext(InContext);
+  const { addToast } = useToast()
+
 
   const [modalIsOpen, setIsOpen] = React.useState(false);
-  const [selectColor, setSelectColor] = useState({});
-  const [descricao, setDescricao] = useState('');
+
+  const [color, setColor] = useState("#aabbcc");
+  const [setores, setSetores] = useState([]);
+  const [selectedSetor, setSelectedSetor] = useState();
+
+
+  const pegaSetor = async () => {
+    const response = await api.get('api/areas');
+    setSetores(response.data);
+  }
+
+  const handleInsereCampoResultado = useCallback(async () => {
+    const res = await api.post('api/crscdr', { descricao: digitado, id_area: selectedSetor, color: color })
+  }, [digitado, selectedSetor, color])
+
+  useEffect(() => {
+    pegaSetor()
+  }, [])
+
+  const setoresOptions = setores.map((setor: any) => ({
+    value: setor?.id,
+    label: setor?.descricao
+  }))
+
 
 
   function openModal() {
@@ -35,14 +61,8 @@ const ModalCadastroCampoResultado = () => {
     setIsOpen(false);
   }
 
-  const state = {
-    background: '#000',
-  };
 
-  const handleChangeComplete = (color: any, event: any) => {
-    console.log(event)
-    setSelectColor({ background: color.hex });
-  };
+
 
   const options = [
     { value: 'chocolate', label: 'Chocolate' },
@@ -51,7 +71,7 @@ const ModalCadastroCampoResultado = () => {
   ]
 
 
-
+  console.log(selectedSetor)
 
   return (
     <>
@@ -78,7 +98,7 @@ const ModalCadastroCampoResultado = () => {
           <button onClick={closeModal}><IoMdClose /></button>
         </TitleModal>
 
-        <form>
+        <form onSubmit={handleInsereCampoResultado}>
           <div>
             <SelectModal
               placeholder="Selecione o Setor"
@@ -88,8 +108,9 @@ const ModalCadastroCampoResultado = () => {
                   borderColor: state.isFocused ? 'grey' : 'transparent',
                 }),
               }}
-              options={options}
-              required
+              options={setoresOptions}
+              onChange={(as: any) => setSelectedSetor(as.value)}
+              required={true}
             />
 
             <Input
@@ -99,10 +120,11 @@ const ModalCadastroCampoResultado = () => {
 
 
           <div className='picker'>
-            <SliderPicker
+            {/*<SliderPicker
               color={state.background}
               onChange={handleChangeComplete}
-            />
+            />*/}
+            <HexColorPicker color={color} onChange={setColor} />
           </div>
 
 
@@ -111,7 +133,7 @@ const ModalCadastroCampoResultado = () => {
 
         </form>
 
-        <Card style={selectColor}>
+        <Card style={{ background: color }}>
           <Content >
             <Title>
               {/* o Icone vai aqui */}

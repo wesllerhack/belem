@@ -15,9 +15,6 @@ export const Container = styled.div<ContainerProps>`
   height: 300px;
   width: 100%;
 
-
-
-
   ul {
     list-style: none;
 

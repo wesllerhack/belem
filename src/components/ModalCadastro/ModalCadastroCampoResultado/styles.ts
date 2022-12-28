@@ -33,9 +33,29 @@ export const ModalCampo = styled(Modal)`
     flex-direction: column;
     height: 250px;
 
-    .picker {
-      width: 100%;
+
+
+    .react-colorful {
+    height: 100px;
+    width: 310px;
+    margin-bottom: 25px;
     }
+
+    .react-colorful__saturation {
+      border-radius: 4px 4px 0 0;
+    }
+
+    .react-colorful__hue {
+      height: 20px;
+      border-radius: 0 0 4px 4px;
+    }
+
+    .react-colorful__hue-pointer {
+      width: 12px;
+      height: 15px;
+      border-radius: 0;
+    }
+
 
   }
 `;
@@ -61,11 +81,9 @@ export const TitleModal = styled.div`
 
 export const SelectModal = styled(Select)`
   width: 312px;
-
+  z-index: 999;
 
 `;
-
-
 
 export const Card = styled.div`
   margin: 24px 48px;
