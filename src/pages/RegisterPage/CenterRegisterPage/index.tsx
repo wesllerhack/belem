@@ -1,7 +1,7 @@
 import React from 'react'
 
 import AddCardCampoResultado from '../../../components/RegisterComponents/AddCardCampoResultado'
-import CardCampoResultados from '../../../components/CardCampoResultado';
+import CardCampoResultados from '../../../components/RegisterComponents/CardCampoResultado';
 
 
 import { Container } from './styles';

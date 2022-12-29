@@ -11,7 +11,8 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   color: #fff;
-  cursor: pointer;
+  cursor: disabled;
+  pointer-events: none;
   box-shadow: 0px 0px 33px -5px rgba(0,0,0,0.94);
 
 

@@ -92,3 +92,4 @@ export const Percent = styled.div`
 `;
 
 
+

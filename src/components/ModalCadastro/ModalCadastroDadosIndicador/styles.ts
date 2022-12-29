@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import DatePicker from 'react-datepicker';
 
 import Modal from 'react-modal';
 import Select from 'react-select';
@@ -67,4 +68,19 @@ export const SelectModal = styled(Select)`
 
 `;
 
+export const DateSelector = styled(DatePicker)`
+    width: 310px;
+    height: 40px;
+    margin-top: 15px;
+    border: none;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 4px;
+
+
+
+    &:focus {
+      outline: none;
+    }
+`
 

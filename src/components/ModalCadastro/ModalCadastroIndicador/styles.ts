@@ -11,7 +11,7 @@ export const ModalCampo = styled(Modal)`
   align-items: center;
   position: relative;
   width: 500px;
-  height: 400px;
+  height: 500px;
   background: #ccc;
   top: 50%;
   left: 50%;

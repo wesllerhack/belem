@@ -22,10 +22,20 @@ export const Container = styled.div`
     transition: 0.1s;
 
     :focus {
-    outline: none !important;
-    border:2px solid #092f58;
-  }
+      outline: none !important;
+      border:2px solid #092f58;
+    }
 
+    ::-webkit-outer-spin-button,
+    ::-webkit-inner-spin-button {
+        /* display: none; <- Crashes Chrome on hover */
+        -webkit-appearance: none;
+        margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    }
+
+    [type=number] {
+        -moz-appearance:textfield; /* Firefox */
+    }
 
   }
 

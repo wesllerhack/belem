@@ -81,7 +81,7 @@ export const TitleModal = styled.div`
 
 export const SelectModal = styled(Select)`
   width: 312px;
-  z-index: 999;
+  z-index: 10;
 
 `;
 

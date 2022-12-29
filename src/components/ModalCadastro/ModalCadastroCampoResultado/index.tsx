@@ -19,28 +19,51 @@ import { useCallback } from 'react';
 
 const ModalCadastroCampoResultado = () => {
   const { digitado, setDigitado } = useContext(InContext);
-  const { addToast } = useToast()
+  const { addToast } = useToast();
 
 
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   const [color, setColor] = useState("#aabbcc");
   const [setores, setSetores] = useState([]);
-  const [selectedSetor, setSelectedSetor] = useState();
+  const [selectedSetor, setSelectedSetor] = useState(null);
+  const [descricao, setDescricao] = useState();
 
-
-  const pegaSetor = async () => {
-    const response = await api.get('api/areas');
-    setSetores(response.data);
-  }
-
-  const handleInsereCampoResultado = useCallback(async () => {
-    const res = await api.post('api/crscdr', { descricao: digitado, id_area: selectedSetor, color: color })
-  }, [digitado, selectedSetor, color])
+  const [isValid, setIsValid] = useState(false);
 
   useEffect(() => {
+    // If there is data, the form is valid
+    setIsValid(color && selectedSetor && descricao ? true : false);
+  }, [color, selectedSetor, descricao]);
+
+  useEffect(() => {
+    const pegaSetor = async () => {
+      const response = await api.get('api/areas');
+      setSetores(response.data);
+    }
     pegaSetor()
   }, [])
+
+  const handleInsereCampoResultado = useCallback(async (e: { preventDefault: () => void; }) => {
+    e.preventDefault()
+    const res = await api.post('api/crscdr', { descricao: descricao, id_area: selectedSetor, color: color })
+    setIsOpen(false);
+    setSelectedSetor(null);
+    setDigitado(null)
+    if (res.status === 201) {
+      addToast({
+        type: 'success',
+        title: 'Cadastro realizado com sucesso'
+      });
+    } else {
+      addToast({
+        type: 'error',
+        title: 'Ocorreu um erro ao realizar o cadastro'
+      });
+    }
+  }, [descricao, selectedSetor, color])
+
+
 
   const setoresOptions = setores.map((setor: any) => ({
     value: setor?.id,
@@ -61,18 +84,6 @@ const ModalCadastroCampoResultado = () => {
     setIsOpen(false);
   }
 
-
-
-
-  const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
-  ]
-
-
-  console.log(selectedSetor)
-
   return (
     <>
       <button onClick={openModal}><IoMdAdd /></button>
@@ -90,7 +101,6 @@ const ModalCadastroCampoResultado = () => {
             bottom: 0,
             backgroundColor: 'rgba(31, 31, 31, 0.75)'
           },
-
         }}
       >
         <TitleModal>
@@ -114,22 +124,21 @@ const ModalCadastroCampoResultado = () => {
             />
 
             <Input
-              name="Descrição" value={digitado}
+              type="text"
+              placeholder="Digite a descrição"
+              onChange={(event: any) => setDescricao(event.target.value)}
+              name="Descricao"
             />
           </div>
 
 
           <div className='picker'>
-            {/*<SliderPicker
-              color={state.background}
-              onChange={handleChangeComplete}
-            />*/}
             <HexColorPicker color={color} onChange={setColor} />
           </div>
 
 
-          <div><ButtonAdicionar nome="Adicionar" /></div>
-
+          <div><ButtonAdicionar disabled={!isValid} nome="Adicionar" /></div>
+          {!isValid && <p style={{ color: 'red' }}>Todos os campos devem ser preenchidos</p>}
 
         </form>
 
@@ -137,7 +146,7 @@ const ModalCadastroCampoResultado = () => {
           <Content >
             <Title>
               {/* o Icone vai aqui */}
-              <h2>{digitado}</h2>
+              <h2>{descricao}</h2>
             </Title>
             <PercentSquare>
               <div>100%</div>

@@ -2,12 +2,13 @@ import React from 'react'
 
 interface buttonProps {
   nome: string;
+  disabled: Boolean | undefined;
 }
 import { Container } from './styles';
-const ButtonAdicionar = ({ nome }: buttonProps) => {
+const ButtonAdicionar = ({ nome, disabled }: buttonProps) => {
   return (
     <Container>
-      <button>{nome}</button>
+      <button disabled={disabled}>{nome}</button>
     </Container>
   )
 }

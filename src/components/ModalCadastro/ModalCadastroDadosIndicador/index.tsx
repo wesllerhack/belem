@@ -1,8 +1,9 @@
-import React, { useContext, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 
-import Select from 'react-select';
-import Modal from 'react-modal';
+import ptBR from 'date-fns/locale/pt-BR';
+import { isToday, format, parseISO, isAfter } from 'date-fns';
 
+import 'react-datepicker/dist/react-datepicker.css';
 
 import ButtonAdicionar from '../../ButtonAdicionar';
 import Input from '../../Input';
@@ -10,47 +11,112 @@ import { IoMdAdd, IoMdClose } from 'react-icons/io'
 
 
 
-import { ModalCampo, TitleModal, SelectModal } from './styles';
+import { ModalCampo, TitleModal, SelectModal, DateSelector } from './styles';
 import { InContext } from '../../../context/DataContext';
+import { useToast } from '../../../context/toast';
+import api from '../../../services/api';
 
 
 const ModalCadastroDadosIndicador = () => {
   const { digitado, setDigitado } = useContext(InContext);
+  const { addToast } = useToast();
 
   const [modalIsOpen, setIsOpen] = React.useState(false);
-  const [selectColor, setSelectColor] = useState({});
-  const [descricao, setDescricao] = useState('');
+  const [indicadores, setIndicadores] = useState([]);
+  const [selectedIndicador, setSelectedIndicador] = useState(null);
+  const [selectedDate, setSelectedDate] = useState();
+  const [selectedMeta, setSelectedMeta] = useState(null);
+  const [selectedRealizado, setSelectedRealizado] = useState(null);
+  const [selectedPeso, setSelectedPeso] = useState(null);
+  const [selectedPonderado, setSelectedPonderado] = useState(null);
+  const [startDate, setStartDate] = useState(new Date());
+
+
+  const [isValid, setIsValid] = useState(false);
+
+  useEffect(() => {
+    // If there is data, the form is valid
+    setIsValid(
+      selectedIndicador &&
+        startDate &&
+        selectedMeta &&
+        selectedRealizado &&
+        selectedPeso &&
+        selectedPonderado
+        ? true : false);
+  }, [selectedIndicador,
+    startDate,
+    selectedMeta,
+    selectedRealizado,
+    selectedPeso,
+    selectedPonderado]);
+
+  const selectedRightDate = useMemo(() => {
+    return format(startDate, 'Y/MM/dd', {
+      locale: ptBR,
+    });
+  }, [startDate]);
+
+
+
+  console.log(selectedRightDate)
 
 
   function openModal() {
     setIsOpen(true);
   }
-
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
   }
-
   function closeModal() {
     setIsOpen(false);
   }
 
-  const state = {
-    background: '#000',
-  };
+  useEffect(() => {
+    const pegaIndicador = async () => {
+      const response = await api.get(`api/crsind/1`);
+      setIndicadores(response.data);
+    }
+    pegaIndicador()
+  }, [])
 
-  const handleChangeComplete = (color: any, event: any) => {
-    console.log(event)
-    setSelectColor({ background: color.hex });
-  };
-
-  const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
-  ]
+  const indicadoresOptions = indicadores.map((indicador: any) => ({
+    value: indicador?.id,
+    label: indicador?.descricao
+  }))
 
 
 
+  const handleInsereDadosIndicadores = useCallback(async (e: { preventDefault: () => void; }) => {
+    e.preventDefault()
+    const res = await api.post('api/crsdad',
+      {
+        id_indicador: selectedIndicador,
+        mes_ano: selectedRightDate,
+        meta: selectedMeta,
+        realizado: selectedRealizado,
+        peso: selectedPeso,
+      }
+    )
+    setIsOpen(false);
+    setSelectedIndicador(null);
+    setDigitado(null)
+    if (res.status === 201) {
+      addToast({
+        type: 'success',
+        title: 'Cadastro realizado com sucesso'
+      });
+    } else {
+      addToast({
+        type: 'error',
+        title: 'Ocorreu um erro ao realizar o cadastro'
+      });
+    }
+  }, [selectedIndicador,
+    selectedRightDate,
+    selectedMeta,
+    selectedRealizado,
+    selectedPeso])
 
   return (
     <>
@@ -77,31 +143,59 @@ const ModalCadastroDadosIndicador = () => {
           <button onClick={closeModal}><IoMdClose /></button>
         </TitleModal>
 
-        <form>
+        <form onSubmit={handleInsereDadosIndicadores}>
           <div>
             <SelectModal
-              placeholder="Selecione o Indicador"
-              options={options}
-              required
+              placeholder="Selecione o Setor"
+              styles={{
+                control: (baseStyles, state) => ({
+                  ...baseStyles,
+                  borderColor: state.isFocused ? 'grey' : 'transparent',
+                }),
+              }}
+              options={indicadoresOptions}
+              onChange={(as: any) => setSelectedIndicador(as.value)}
+              required={true}
+            />
+            <DateSelector
+              selected={startDate}
+              onChange={(date: Date) => setStartDate(date)}
+              locale={ptBR}
+              dateFormat="MMMM 'de' yyyy"
+              showMonthYearPicker
+              showFullMonthYearPicker
+              showTwoColumnMonthYearPicker
             />
             <Input
-              name="Data" value={''}
+              type="float"
+              placeholder="Meta"
+              onChange={(event: any) => setSelectedMeta(event.target.value)}
+              name="Meta"
             />
             <Input
-              name="Meta" value={''}
+              type="float"
+              placeholder="Realizado"
+              onChange={(event: any) => setSelectedRealizado(event.target.value)}
+              name="Realizado"
             />
             <Input
-              name="Realizado" value={''}
+              type="float"
+              placeholder="Peso"
+              onChange={(event: any) => setSelectedPeso(event.target.value)}
+              name="Peso"
             />
             <Input
-              name="Peso" value={''}
-            />
-            <Input
-              name="Ponderado" value={''}
+              type="float"
+              placeholder="Ponderado"
+              onChange={(event: any) => setSelectedPonderado(event.target.value)}
+              name="Ponderado"
             />
           </div>
 
-          <div><ButtonAdicionar nome="Adicionar" /></div>
+          <div>
+            <ButtonAdicionar disabled={!isValid} nome="Adicionar" />
+            {!isValid && <p style={{ color: 'red' }}>Todos os campos devem ser preenchidos</p>}
+          </div>
 
 
         </form>

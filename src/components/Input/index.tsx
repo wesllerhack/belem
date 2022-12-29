@@ -1,23 +1,24 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
+import { InputHTMLAttributes } from 'react';
 
 import { InContext } from '../../context/DataContext';
 
-interface inputProps {
+interface inputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
-  value: string;
 }
 
 import { Container } from './styles'
-const Input = ({ name, value }: inputProps) => {
+const Input: React.FC<inputProps> = ({ name, ...rest }) => {
+  const inputRef = useRef<HTMLInputElement>(null);
   const { digitado, setDigitado } = useContext(InContext);
 
   return (
     <Container>
       <label htmlFor={name}></label>
       <input
-        onChange={(event) => setDigitado(event.target.value)}
-        placeholder={name}
         required
+        ref={inputRef}
+        {...rest}
       />
     </Container>
   )
