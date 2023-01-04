@@ -4,15 +4,12 @@ import DatePicker from 'react-datepicker';
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  margin-top: 20px;
-  margin-left: 48px;
-  height: 160px;
-  width: 100%;
+  align-items: center;
+  width: 200px;
+
 
   input {
-    margin-top: 16px;
     color: blue;
     cursor: pointer;
   }
@@ -21,6 +18,9 @@ export const Container = styled.div`
 `;
 
 export const DateSelector = styled(DatePicker)`
+    display: flex;
+    height: 40px;
+    align-items: center;
     font-weight: 600;
     font-size: 20px;
     border-radius: 4px;

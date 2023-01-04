@@ -10,6 +10,9 @@ export const Container = styled.div`
   border-radius: 25px;
   overflow-y: auto;
 
+  h1 {
+    margin: 62px 0 0px 48px;
+  }
 
 
   ::-webkit-scrollbar {
@@ -27,4 +30,15 @@ export const Container = styled.div`
   }
 
 `;
+
+export const SubHeader = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 65px;
+  margin-left: 48px;
+  width: 100%;
+  margin-top: 16px;
+`;
+
 

@@ -9,7 +9,6 @@ const SelectPeriodo = () => {
 
   return (
     <Container>
-      <h1>Campo de Resultados</h1>
       <DateSelector
         selected={startDate}
         onChange={(date: Date) => setStartDate(date)}

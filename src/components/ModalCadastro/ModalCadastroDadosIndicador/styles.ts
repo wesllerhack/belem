@@ -68,16 +68,24 @@ export const SelectModal = styled(Select)`
 
 `;
 
+export const DataInput = styled.div`
+  background: #fff;
+  width: 310px;
+  height: 40px;
+  margin-top: 15px;
+
+  border: none;
+
+  border-radius: 4px;
+`;
+
 export const DateSelector = styled(DatePicker)`
-    width: 310px;
-    height: 40px;
-    margin-top: 15px;
-    border: none;
-    font-weight: 600;
-    font-size: 16px;
-    border-radius: 4px;
-
-
+  width: 300px;
+  border-radius: 10px;
+  margin-left: 10px;
+  height: 40px;
+  border: none;
+  font-size: 16px;
 
     &:focus {
       outline: none;

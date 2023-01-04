@@ -17,6 +17,7 @@ const UserHeader = () => {
           <h4>Wesller Hack</h4>
           <h5>Analista e Desenvolvedor Full-Stack</h5>
           <span>Lider Imediato:&nbsp;<p>Maykol Schier</p></span>
+          <span>Setor:&nbsp;<p>Tecnologia da Informação</p></span>
         </User>
         <img src={'https://avatars.githubusercontent.com/u/38771463?v=4'} />
       </Profile>

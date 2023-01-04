@@ -11,7 +11,7 @@ import { IoMdAdd, IoMdClose } from 'react-icons/io'
 
 
 
-import { ModalCampo, TitleModal, SelectModal, DateSelector } from './styles';
+import { ModalCampo, TitleModal, SelectModal, DataInput, DateSelector } from './styles';
 import { InContext } from '../../../context/DataContext';
 import { useToast } from '../../../context/toast';
 import api from '../../../services/api';
@@ -52,7 +52,7 @@ const ModalCadastroDadosIndicador = () => {
     selectedPonderado]);
 
   const selectedRightDate = useMemo(() => {
-    return format(startDate, 'Y/MM/dd', {
+    return format(startDate, 'Y-MM-dd', {
       locale: ptBR,
     });
   }, [startDate]);
@@ -146,7 +146,7 @@ const ModalCadastroDadosIndicador = () => {
         <form onSubmit={handleInsereDadosIndicadores}>
           <div>
             <SelectModal
-              placeholder="Selecione o Setor"
+              placeholder="Selecione o Indicador"
               styles={{
                 control: (baseStyles, state) => ({
                   ...baseStyles,
@@ -157,15 +157,18 @@ const ModalCadastroDadosIndicador = () => {
               onChange={(as: any) => setSelectedIndicador(as.value)}
               required={true}
             />
-            <DateSelector
-              selected={startDate}
-              onChange={(date: Date) => setStartDate(date)}
-              locale={ptBR}
-              dateFormat="MMMM 'de' yyyy"
-              showMonthYearPicker
-              showFullMonthYearPicker
-              showTwoColumnMonthYearPicker
-            />
+            <DataInput>
+              <DateSelector
+                selected={startDate}
+                onChange={(date: Date) => setStartDate(date)}
+                locale={ptBR}
+                dateFormat="MMMM 'de' yyyy"
+                showMonthYearPicker
+                showFullMonthYearPicker
+                showTwoColumnMonthYearPicker
+              />
+            </DataInput>
+
             <Input
               type="float"
               placeholder="Meta"

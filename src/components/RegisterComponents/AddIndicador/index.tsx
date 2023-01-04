@@ -43,8 +43,8 @@ const Indicador = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    /* nextArrow: <SampleNextArrow />,
+     prevArrow: <SamplePrevArrow />,*/
   };
 
   useEffect(() => {
