@@ -19,7 +19,7 @@ export const ModalCampo = styled(Modal)`
   bottom: auto;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  z-index: 99;
+  z-index: 999;
   overflow: hidden;
   box-shadow: 0px 0px 33px -5px rgba(0,0,0,0.94);
   border-radius: 12px;
@@ -80,6 +80,7 @@ export const TitleModal = styled.div`
 `;
 
 export const SelectModal = styled(Select)`
+  position: relative;
   width: 312px;
   z-index: 10;
 

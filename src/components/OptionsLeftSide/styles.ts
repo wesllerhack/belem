@@ -72,6 +72,24 @@ export const Container = styled.div<ContainerProps>`
                   `
   }
 
+${props =>
+    props.selected === 3 &&
+    css`
+                  &:nth-child(3){
+                        svg  {
+                        border-radius: 30%;
+                        background: #25316D;
+                        color: #fff;
+                        box-shadow: 0px 0px 8px 4px rgba(0,0,0,0.45);
+                      }
+
+                      span {
+                        color: #25316D;
+                      }
+                    }
+                  `
+  }
+
 
 
 

@@ -1,5 +1,18 @@
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
+const animationCards = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  30% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+
+`;
 
 export const Container = styled.div`
   margin: 24px 48px;
@@ -14,9 +27,7 @@ export const Container = styled.div`
   cursor: disabled;
   pointer-events: none;
   box-shadow: 0px 0px 33px -5px rgba(0,0,0,0.94);
-
-
-
+  animation: ${animationCards} 2s;
 
 `;
 

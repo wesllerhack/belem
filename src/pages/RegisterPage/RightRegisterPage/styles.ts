@@ -8,7 +8,8 @@ export const Container = styled.div`
   display: flex;
   //background: pink;
   flex-direction: column;
-  position: relative;
+  position: absolute;
+  right: 0;
   margin: 20px 30px;
   padding: 0 20px;
 

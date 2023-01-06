@@ -129,6 +129,7 @@ const ModalCadastroDadosIndicador = () => {
         style={{
           overlay: {
             position: 'fixed',
+            zIndex: 9999,
             top: 0,
             left: 0,
             right: 0,

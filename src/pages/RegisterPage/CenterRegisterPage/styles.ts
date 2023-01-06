@@ -1,16 +1,33 @@
-import styled from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 
+interface verifyAnimaitonProps {
+  verify: Boolean;
+}
 
-export const Container = styled.div`
-  background: rgba(230, 230, 230, 0.911);
+const retractCenter = keyframes`
+  from{
+    width: 75vw;
+  }
+  to {
+    width: 35vw;
+  }
+`;
+
+export const Container = styled.div<verifyAnimaitonProps>`
+  background: #E6e6e6;
   height: calc(97vh - 20px);
   width: 35vw;
   position: relative;
   margin: 20px 0px;
   border-radius: 25px;
-  overflow-y: auto;
-
-
+  overflow-x: auto;
+  z-index: 1;
+  ${props =>
+    props.verify === true &&
+    css`
+      animation: ${retractCenter} 1s;
+    `
+  }
 
   ::-webkit-scrollbar {
     display: none;

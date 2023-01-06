@@ -2,7 +2,7 @@ import React from 'react'
 
 interface buttonProps {
   nome: string;
-  disabled: Boolean | undefined;
+  disabled: any;
 }
 import { Container } from './styles';
 const ButtonAdicionar = ({ nome, disabled }: buttonProps) => {

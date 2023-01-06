@@ -1,34 +1,25 @@
-import styled, { keyframes, css } from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-interface verifyAnimaitonProps {
-  verify: Boolean;
-}
-
-const retractCenter = keyframes`
+const expandCenter = keyframes`
   from{
-    width: 75vw;
-  }
-  to {
     width: 35vw;
   }
+  to {
+    width: calc(100vw - 400px);
+  }
 `;
-
-export const Container = styled.div<verifyAnimaitonProps>`
+/*background: rgba(230, 230, 230, 0.911); */
+export const Container = styled.div`
   background: #E6e6e6;
   height: calc(97vh - 20px);
-  width: 35vw;
+  width: calc(100vw - 400px);
+
+
   position: relative;
   margin: 20px 0px;
   border-radius: 25px;
-  overflow-x: auto;
-  z-index: 2;
-
-  ${props =>
-    props.verify === true &&
-    css`
-    animation: ${retractCenter} 1s;
-       `
-  }
+  overflow-y: auto;
+  animation: ${expandCenter} 1s;
 
   h1 {
     margin: 62px 0 0px 48px;
@@ -50,6 +41,8 @@ export const Container = styled.div<verifyAnimaitonProps>`
   }
 
 `;
+
+
 
 export const SubHeader = styled.div`
   display: flex;

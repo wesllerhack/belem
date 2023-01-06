@@ -15,6 +15,8 @@ interface InContextData {
   setDigitado: any;
   isSelected: Number;
   setIsSelected: any;
+  verifyAnimation: any;
+  setVerifyAnimation: any;
 }
 
 
@@ -31,6 +33,8 @@ export const DataContext: React.FC<PropsWithChildren> = ({ children }) => {
 
   const [digitado, setDigitado] = useState('');
   const [isSelected, setIsSelected] = useState(1);
+
+  const [verifyAnimation, setVerifyAnimation] = useState(false);
 
 
   return (
@@ -49,7 +53,9 @@ export const DataContext: React.FC<PropsWithChildren> = ({ children }) => {
         digitado,
         setDigitado,
         isSelected,
-        setIsSelected
+        setIsSelected,
+        verifyAnimation,
+        setVerifyAnimation
       }}
     >
       {children}
