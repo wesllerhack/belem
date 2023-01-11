@@ -10,7 +10,7 @@ export const Container = styled.div`
   position: relative;
   left: 0;
   //background: pink;
-  margin: 20px 30px;
+  margin: 20px 20px;
 
   img {
     width: 250px;

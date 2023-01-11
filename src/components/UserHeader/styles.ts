@@ -12,7 +12,7 @@ export const Container = styled.div`
 
 export const Notification = styled.div`
   svg {
-    font-size: 36px;
+    font-size: 2rem;
     color: #ccc;
     cursor: pointer;
   }
@@ -34,6 +34,7 @@ export const User = styled.div`
 
   span {
     display: flex;
+    font-size: 0.9rem;
   }
 `;
 

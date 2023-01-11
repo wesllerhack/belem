@@ -12,10 +12,12 @@
   "dependencies": {
     "@ramonak/react-progress-bar": "^5.0.3",
     "@types/react-color": "^3.0.6",
+    "@types/react-table": "^7.7.14",
     "@types/styled-components": "^5.1.26",
     "@unform/core": "^2.1.6",
     "@unform/web": "^2.1.6",
     "axios": "^1.2.1",
+    "namor": "^2.0.4",
     "polished": "^4.2.2",
     "react": "^18.2.0",
     "react-circular-progressbar": "^2.1.0",
@@ -29,6 +31,7 @@
     "react-select": "^5.7.0",
     "react-slick": "^0.29.0",
     "react-spring": "^9.6.1",
+    "react-table": "^7.8.0",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.6",
     "uuidv4": "6.0.7"

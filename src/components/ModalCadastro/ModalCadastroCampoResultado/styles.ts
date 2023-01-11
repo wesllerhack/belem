@@ -27,11 +27,13 @@ export const ModalCampo = styled(Modal)`
 
   form {
     width: auto;
+    padding: 0 100px;
+    background: red;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    height: 250px;
+    height: 100%;
 
 
 

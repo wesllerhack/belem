@@ -738,6 +738,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-table@^7.7.14":
+  version "7.7.14"
+  resolved "https://registry.yarnpkg.com/@types/react-table/-/react-table-7.7.14.tgz#b880f1ae140ed065bca2e21b3008ca1ebe71595a"
+  integrity sha512-TYrv7onCiakaG1uAu/UpQ9FojNEt/4/ht87EgJQaEGFoWV606ZLWUZAcUHzMxgc3v1mywP1cDyz3qB4ho3hWOw==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-transition-group@^4.4.0":
   version "4.4.5"
   resolved "https://registry.yarnpkg.com/@types/react-transition-group/-/react-transition-group-4.4.5.tgz#aae20dcf773c5aa275d5b9f7cdbca638abc5e416"
@@ -1165,6 +1172,11 @@ cross-spawn@^7.0.2, cross-spawn@^7.0.3:
     path-key "^3.1.0"
     shebang-command "^2.0.0"
     which "^2.0.1"
+
+crypto-extra@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/crypto-extra/-/crypto-extra-1.0.1.tgz#91d9e3d8d35f9a16d548c073c31b147f34eab11e"
+  integrity sha512-EDJ07p6UDdyX+7GL6Bb6FqCuCHY34GuII9esE/xXZtW7tlB+A7MYT9O/c1M/ov2aGTdwvw0b3z5OcO50zYBG5Q==
 
 css-color-keywords@^1.0.0:
   version "1.0.0"
@@ -2284,6 +2296,13 @@ ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.3.tgz#574c8138ce1d2b5861f0b44579dbadd60c6615b2"
   integrity sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
 
+namor@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/namor/-/namor-2.0.4.tgz#4cbc5d8551dcbbdb3710ad33682c6335a1af122b"
+  integrity sha512-fP/nmpFqzoaZk+RGASLktUpC5l7UXcEVuwGNMZ5JQj9RoI5GnYgvIUA3kNAzlgmSyjp5AJNI3mCg7zALESQdCQ==
+  dependencies:
+    crypto-extra "1.0.1"
+
 nanoid@^3.3.4:
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.4.tgz#730b67e3cd09e2deacf03c027c81c9d9dbc5e8ab"
@@ -2663,6 +2682,11 @@ react-spring@^9.6.1:
     "@react-spring/three" "~9.6.1"
     "@react-spring/web" "~9.6.1"
     "@react-spring/zdog" "~9.6.1"
+
+react-table@^7.8.0:
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/react-table/-/react-table-7.8.0.tgz#07858c01c1718c09f7f1aed7034fcfd7bda907d2"
+  integrity sha512-hNaz4ygkZO4bESeFfnfOft73iBUj8K5oKi1EcSHPAibEydfsX2MyU6Z8KCr3mv3C9Kqqh71U+DhZkFvibbnPbA==
 
 react-transition-group@^4.3.0:
   version "4.4.5"

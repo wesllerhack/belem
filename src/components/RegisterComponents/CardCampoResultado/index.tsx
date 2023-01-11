@@ -64,14 +64,14 @@ const CardCampoResultados = () => {
               <h2>{value.descricao}</h2>
             </Title>
             <PercentSquare>
-              <div>69%</div>
+              <div>68%</div>
               <p>atingido</p>
             </PercentSquare>
           </Content>
           <ContentBar>
             <ProgressBar
               className="wrapper"
-              completed={69}
+              completed={68}
               bgColor={'#fff'}
               baseBgColor={'#acacacc3'}
               labelColor={'#000'}

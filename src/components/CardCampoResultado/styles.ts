@@ -28,9 +28,6 @@ export const Container = styled.div`
   cursor: pointer;
   box-shadow: 0px 0px 33px -5px rgba(0,0,0,0.94);
   animation: ${animationCards} 2s;
-
-
-
 `;
 
 export const Content = styled.div`

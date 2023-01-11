@@ -24,13 +24,13 @@ const OptionsLeftSide = () => {
           <Link to="/dashboard" onClick={() => setIsSelected(1)} ><MdOutlineDashboardCustomize /><span>Dashboard</span></Link>
         </li>
         <li  >
-          <Link to="/cadastro" onClick={() => setIsSelected(2)}><MdOutlinePlaylistAdd /><span>Cadastro</span></Link>
+          <Link to="/consolidado" onClick={() => setIsSelected(2)}><VscGraph /><span>Consolidado</span></Link>
         </li>
         <li  >
-          <Link to="/consolidado" onClick={() => setIsSelected(3)}><VscGraph /><span>Consolidado</span></Link>
+          <Link to="/cadastro" onClick={() => setIsSelected(3)}><MdOutlinePlaylistAdd /><span>Cadastro</span></Link>
         </li>
         <li  >
-          <FaUserEdit /><span>Perfil</span>
+          <Link to="/perfil" onClick={() => setIsSelected(4)}><FaUserEdit /><span>Perfil</span></Link>
         </li>
       </ul>
     </Container>

@@ -22,11 +22,12 @@ const showPerfil = keyframes`
 `;
 /*background: rgba(230, 230, 230, 0.911); */
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background: #E6e6e6;
   height: calc(97vh - 20px);
   width: calc(100vw - 380px);
-
-
   position: relative;
   margin: 20px 0px;
   border-radius: 25px;
@@ -34,6 +35,8 @@ export const Container = styled.div`
   animation: ${expandCenter} 1s;
 
   h1 {
+    width: 100%;
+    display: flex;
     margin: 62px 0 0px 48px;
   }
 
@@ -54,24 +57,7 @@ export const Container = styled.div`
 
 `;
 
-export const User = styled.div`
-  width: 35vw;
-  right: 5px;
-  top: 0;
-  position: absolute;
-  animation: ${showPerfil} 3s;
-`;
 
 
-
-export const SubHeader = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  height: 65px;
-  margin-left: 48px;
-  width: 100%;
-  margin-top: 16px;
-`;
 
 

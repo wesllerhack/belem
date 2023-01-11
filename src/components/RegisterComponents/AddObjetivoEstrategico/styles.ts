@@ -33,6 +33,8 @@ export const Container = styled.div`
         background: blue;
         color: #fff;
         padding: 4px;
+        font-size: 1rem;
+        box-sizing: content-box;
         transition: background-color 0.2s;
 
         &:hover {

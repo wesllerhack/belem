@@ -26,9 +26,9 @@ export const Container = styled.div`
 
     svg {
     cursor: pointer;
-
+    box-sizing: content-box;
     border-radius: 35%;
-    font-size: 30px;
+    font-size: 1.5rem;
     background: #0919e8;
     color: #fff;
     padding: 10px;

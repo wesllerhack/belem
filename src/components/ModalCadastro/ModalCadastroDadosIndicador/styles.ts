@@ -13,7 +13,7 @@ export const ModalCampo = styled(Modal)`
   position: relative;
   width: 500px;
   height: 600px;
-  background: #ccc;
+  background: #fff;
   top: 50%;
   left: 50%;
   right: auto;
@@ -46,6 +46,7 @@ export const TitleModal = styled.div`
     display: flex;
     width: 90%;
     align-items: center;
+
     justify-content: space-between;
     margin: 10px;
     padding: 10px;
@@ -69,7 +70,7 @@ export const SelectModal = styled(Select)`
 `;
 
 export const DataInput = styled.div`
-  background: #fff;
+   background: #ccc;
   width: 310px;
   height: 40px;
   margin-top: 15px;
@@ -82,6 +83,7 @@ export const DataInput = styled.div`
 export const DateSelector = styled(DatePicker)`
   width: 300px;
   border-radius: 10px;
+  background: #ccc;
   margin-left: 10px;
   height: 40px;
   border: none;

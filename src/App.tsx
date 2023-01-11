@@ -1,6 +1,6 @@
 import AppRoutes from './pages/app.routes'
 
-import './global.css'
+import GlobalStyle from './global'
 import AppProvider from './context'
 
 function App() {
@@ -9,6 +9,8 @@ function App() {
     <div>
       <AppProvider>
         <AppRoutes />
+        <GlobalStyle />
+
       </AppProvider>
     </div>
   )

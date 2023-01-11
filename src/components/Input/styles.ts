@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 289px;
-  height: 32px;
-  margin-top: 15px;
-  margin-bottom: 10px;
+  width: 100%;
+  height: 45px;
+  margin-top: 10px;
+  margin-bottom: 5px;
   padding-bottom: 10px;
   border-radius: 4px;
 
@@ -14,9 +14,8 @@ export const Container = styled.div`
     height: 100%;
     padding: 0 10px;
     border: 1px solid rgba(255, 255, 255, 0.25);
-    background: #fff;
+    background: #ccc;
     border-radius: 5px;
-    outline: none;
     color: #092f58;
     font-size: 1em;
     transition: 0.1s;

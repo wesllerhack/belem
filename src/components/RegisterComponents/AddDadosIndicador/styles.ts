@@ -29,10 +29,11 @@ export const Container = styled.div`
         width: 20px;
         height: 20px;
         border-radius: 35%;
-        font-size: 30px;
         background: blue;
         color: #fff;
         padding: 4px;
+        font-size: 1rem;
+        box-sizing: content-box;
         transition: background-color 0.2s;
 
         &:hover {
@@ -74,6 +75,7 @@ export const Indicador = styled.div`
     margin: 5px;
     padding: 5px;
     font-size: 50px;
+
   }
   div {
     font-size: 20px;

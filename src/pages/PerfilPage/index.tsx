@@ -5,7 +5,7 @@ import RightMainPage from './RightMainPage'
 import LeftMainPage from './LeftMainPage'
 
 import { Container } from './styles'
-const ConsolidatedPage = () => {
+const PerfilPage = () => {
   return (
     <Container>
       <LeftMainPage />
@@ -15,4 +15,4 @@ const ConsolidatedPage = () => {
   )
 }
 
-export default ConsolidatedPage;
+export default PerfilPage;

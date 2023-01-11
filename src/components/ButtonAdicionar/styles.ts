@@ -4,22 +4,23 @@ import { shade } from 'polished';
 
 export const Container = styled.div`
   display: flex;
+  padding-top: 20px;
   padding-bottom: 5px;
 
   button {
-    background: #fbcb2c;
-    width: 310px;
+    background: #25316D;
+    width: 100%;
     height: 40px;
     border: none;
     border-radius: 8px;
-    color: #25316D;
+    color: yellow;
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s;
 
     &:hover {
-    background: ${shade(0.2, '#d5ad3b')};
+    background: ${shade(0.2, '#25316D')};
   }
   }
 `;

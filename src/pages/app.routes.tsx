@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import {
   BrowserRouter as Router,
   Route,
@@ -9,6 +8,7 @@ import {
 import MainPage from './MainPage'
 import RegisterPage from './RegisterPage';
 import ConsolidatedPage from './ConsolidatedPage';
+import PerfilPage from './PerfilPage';
 
 const AppRoutes = () => {
 
@@ -19,6 +19,7 @@ const AppRoutes = () => {
           <Route path="/dashboard" element={<MainPage />} />
           <Route path="/cadastro" element={<RegisterPage />} />
           <Route path="/consolidado" element={<ConsolidatedPage />} />
+          <Route path="/perfil" element={<PerfilPage />} />
         </Routes>
       </Router>
     </>

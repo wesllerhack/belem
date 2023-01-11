@@ -152,6 +152,7 @@ const ModalCadastroDadosIndicador = () => {
                 control: (baseStyles, state) => ({
                   ...baseStyles,
                   borderColor: state.isFocused ? 'grey' : 'transparent',
+                  backgroundColor: '#ccc'
                 }),
               }}
               options={indicadoresOptions}

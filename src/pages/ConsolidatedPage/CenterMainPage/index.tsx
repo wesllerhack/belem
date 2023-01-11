@@ -4,8 +4,9 @@ import SelectPeriodo from '../../../components/SelectPeriodo';
 import CardCampoResultados from '../../../components/CardCampoResultado';
 import SetorSelector from '../../../components/SetorSelector';
 import UserHeader from '../../../components/UserHeader';
-
-import { Container, SubHeader } from './styles';
+import Table from '../../../components/TableTest';
+import TableFooter from '../../../components/TableFooter';
+import { Container, SubHeader, User } from './styles';
 import { InContext } from '../../../context/DataContext';
 const CenterMainPage = () => {
   const { verifyAnimation, setVerifyAnimation } = useContext(InContext);
@@ -23,7 +24,10 @@ const CenterMainPage = () => {
         <SelectPeriodo />
         <SetorSelector />
       </SubHeader>
-
+      <User>
+        <UserHeader />
+      </User>
+      <Table />
     </Container>
   );
 };
