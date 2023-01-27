@@ -3,6 +3,7 @@ import React from 'react'
 import { useTable } from 'react-table'
 
 import dados2 from '../../dados2'
+import TableFooter from '../TableFooter'
 
 import { Container } from './styles'
 const Table = () => {
@@ -41,8 +42,8 @@ const Table = () => {
           }
 
         </tbody>
-      </table >
 
+      </table >
     </Container >
   )
 }

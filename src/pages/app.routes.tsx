@@ -9,12 +9,16 @@ import MainPage from './MainPage'
 import RegisterPage from './RegisterPage';
 import ConsolidatedPage from './ConsolidatedPage';
 import PerfilPage from './PerfilPage';
+import LoginPage from "./Login";
 
 const AppRoutes = () => {
 
   return (
     <>
       <Router basename='/'>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+        </Routes>
         <Routes>
           <Route path="/dashboard" element={<MainPage />} />
           <Route path="/cadastro" element={<RegisterPage />} />

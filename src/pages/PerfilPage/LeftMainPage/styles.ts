@@ -1,6 +1,13 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-
+const animatedLogo = keyframes`
+  0% {
+    transform: rotate(-20deg);
+  }
+  100% {
+    transform: rotate(340deg);
+  }
+`;
 
 export const Container = styled.div`
   display: flex;
@@ -30,6 +37,7 @@ export const Container = styled.div`
     left: 190px;
     top: 130px;
     transform: rotate(-20deg);
+    animation: ${animatedLogo} 1s;
 
     font-smooth: always;
   }

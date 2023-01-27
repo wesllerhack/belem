@@ -10,6 +10,7 @@ const LeftMainPage = () => {
   return (
     <Container>
       <img src={logoImg} alt="Belem" />
+      <p>CRS</p>
       <OptionsLeftSide />
     </Container>
   );

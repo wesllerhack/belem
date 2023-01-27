@@ -28,7 +28,6 @@ const CenterMainPage = () => {
         <SetorSelector />
       </SubHeader>
       <CardCampoResultados />
-
     </Container>
   );
 };

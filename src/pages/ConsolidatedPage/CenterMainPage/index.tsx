@@ -28,6 +28,8 @@ const CenterMainPage = () => {
         <UserHeader />
       </User>
       <Table />
+      <TableFooter />
+
     </Container>
   );
 };

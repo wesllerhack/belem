@@ -17,6 +17,7 @@ export const Container = styled.div`
   display: fixed;
   padding: 20px;
   margin: 20px;
+  margin-bottom: 60px;
   background: #25316D;
   border-radius: 10px;
   z-index: 0;
