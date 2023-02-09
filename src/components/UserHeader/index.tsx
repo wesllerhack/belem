@@ -1,12 +1,18 @@
-import React from 'react'
 
 import { AiOutlineBell } from 'react-icons/ai'
-
+import { useAuth } from '../../context/auth'
+import { useInContext } from '../../context/DataContext';
+import userImg from '../../assets/user2.png'
 
 
 import { Container, Notification, Profile, User } from './styles'
 
-const UserHeader = () => {
+export const UserHeader = () => {
+  const { user } = useAuth();
+  const { infoUser } = useInContext();
+
+  const { cargo, setor, lider, } = infoUser
+
   return (
     <Container>
       <Notification>
@@ -14,15 +20,13 @@ const UserHeader = () => {
       </Notification>
       <Profile>
         <User>
-          <h4>Wesller Hack</h4>
-          <h5>Analista e Desenvolvedor Full-Stack</h5>
-          <span>Lider Imediato:&nbsp;<p>Maykol Schier</p></span>
-          <span>Setor:&nbsp;<p>Tecnologia da Informação</p></span>
+          <h4>{user.name}</h4>
+          <h5>{cargo}</h5>
+          <span>Lider Imediato:&nbsp;<p>{lider}</p></span>
+          <span>Setor:&nbsp;<p>{setor}</p></span>
         </User>
-        <img src={'https://avatars.githubusercontent.com/u/38771463?v=4'} />
+        <img src={userImg} />
       </Profile>
     </Container>
   )
 }
-
-export default UserHeader

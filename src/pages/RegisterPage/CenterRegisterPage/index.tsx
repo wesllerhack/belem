@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from 'react'
 
-import AddCardCampoResultado from '../../../components/RegisterComponents/AddCardCampoResultado'
-import CardCampoResultados from '../../../components/RegisterComponents/CardCampoResultado';
+import { AddCardCampoResultado } from '../../../components/RegisterComponents/AddCardCampoResultado'
+import { CardCampoResultados2 } from '../../../components/RegisterComponents/CardCampoResultadoTeste';
 import { InContext } from '../../../context/DataContext';
 
 
 import { Container } from './styles';
-const CenterMainPage = () => {
+export const CenterRegisterPage = () => {
   const { verifyAnimation, setVerifyAnimation } = useContext(InContext);
 
   useEffect(() => {
@@ -20,9 +20,7 @@ const CenterMainPage = () => {
   return (
     <Container verify={verifyAnimation}>
       <AddCardCampoResultado />
-      <CardCampoResultados />
+      <CardCampoResultados2 />
     </Container>
   );
 };
-
-export default CenterMainPage;

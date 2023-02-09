@@ -10,9 +10,9 @@ export const ModalCampo = styled(Modal)`
   justify-content: space-between;
   align-items: center;
   position: relative;
-  width: 500px;
-  height: 450px;
-  background: #ccc;
+  width: 600px;
+  height: 650px;
+  background: #E8eaea;
   top: 50%;
   left: 50%;
   right: auto;
@@ -62,7 +62,7 @@ export const TitleModal = styled.div`
 `;
 
 export const SelectModal = styled(Select)`
-  width: 312px;
+  width: 350px;
   padding-top: 15px;
 
 `;

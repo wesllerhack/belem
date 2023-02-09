@@ -24,7 +24,7 @@ const toastTypeVariations = {
 
 export const Container = styled(animated.div) <ContainerProps>`
   width: 360px;
-
+  z-index: 10000;
   position: relative;
   padding: 16px 30px 16px 16px;
   border-radius: 10px;

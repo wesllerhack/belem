@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from 'react'
 
-import Perfil from '../Perfil';
+import { Perfil } from '../Perfil';
 import { Container } from './styles';
 import { InContext } from '../../../context/DataContext';
-const CenterMainPage = () => {
+export const CenterMainPage = () => {
   const { verifyAnimation, setVerifyAnimation } = useContext(InContext);
 
   useEffect(() => {
@@ -19,5 +19,3 @@ const CenterMainPage = () => {
     </Container>
   );
 };
-
-export default CenterMainPage;

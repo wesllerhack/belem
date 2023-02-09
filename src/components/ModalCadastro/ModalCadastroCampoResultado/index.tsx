@@ -1,39 +1,38 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react'
-
-import api from '../../../services/api.js';
-
-import ButtonAdicionar from '../../ButtonAdicionar';
-import Input from '../../Input';
+import React, { useEffect, useState } from 'react'
+import { api } from '../../../services/api.js';
+import { ButtonAdicionar } from '../../ButtonAdicionar';
+import { Input } from '../../Input';
 import { IoMdAdd, IoMdClose } from 'react-icons/io'
-
-import ProgressBar from "@ramonak/react-progress-bar";
-
-
+import CardProgressBar from "@ramonak/react-progress-bar";
 import { HexColorPicker } from "react-colorful";
-
-import { ModalCampo, TitleModal, SelectModal, Card, Content, Title, PercentSquare, ContentBar } from './styles';
-import { InContext } from '../../../context/DataContext';
+import { useInContext } from '../../../context/DataContext';
 import { useToast } from '../../../context/toast.js';
 import { useCallback } from 'react';
+import { ModalCampo, TitleModal, SelectModal, Card, CardContent, CardTitle, CardPercentSquare, CardContentBar } from './styles';
+import '../styles.css'
+
+interface DescricaoCardProps {
+  descricao: any;
+}
 
 
-const ModalCadastroCampoResultado = () => {
-  const { digitado, setDigitado } = useContext(InContext);
+
+export const ModalCadastroCampoResultado = () => {
+  const { permiteCadastro } = useInContext();
   const { addToast } = useToast();
-
 
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   const [color, setColor] = useState("#aabbcc");
   const [setores, setSetores] = useState([]);
   const [selectedSetor, setSelectedSetor] = useState(null);
-  const [descricao, setDescricao] = useState();
+  const [descricao, setDescricao] = useState(null);
 
   const [isValid, setIsValid] = useState(false);
 
   useEffect(() => {
     // If there is data, the form is valid
-    setIsValid(color && selectedSetor && descricao ? true : false);
+    setIsValid(!!color && !!selectedSetor && !!descricao ? true : false);
   }, [color, selectedSetor, descricao]);
 
   useEffect(() => {
@@ -46,10 +45,11 @@ const ModalCadastroCampoResultado = () => {
 
   const handleInsereCampoResultado = useCallback(async (e: { preventDefault: () => void; }) => {
     e.preventDefault()
-    const res = await api.post('api/crscdr', { descricao: descricao, id_area: selectedSetor, color: color })
+    const res = await api.post('api/crscdr', { descricao: descricao, id_area: selectedSetor, color: color });
+    console.log(res)
     setIsOpen(false);
     setSelectedSetor(null);
-    setDigitado(null)
+    setDescricao(null)
     if (res.status === 201) {
       addToast({
         type: 'success',
@@ -74,6 +74,8 @@ const ModalCadastroCampoResultado = () => {
 
   function openModal() {
     setIsOpen(true);
+    setDescricao(null);
+    setSelectedSetor(null);
   }
 
   function afterOpenModal() {
@@ -82,11 +84,13 @@ const ModalCadastroCampoResultado = () => {
 
   function closeModal() {
     setIsOpen(false);
+    setDescricao(null);
+    setSelectedSetor(null);
   }
 
   return (
     <>
-      <button onClick={openModal}><IoMdAdd /></button>
+      <button disabled={!!permiteCadastro} onClick={openModal}><IoMdAdd /></button>
       <ModalCampo
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
@@ -113,12 +117,8 @@ const ModalCadastroCampoResultado = () => {
           <div>
             <SelectModal
               placeholder="Selecione o Setor"
-              styles={{
-                control: (baseStyles, state) => ({
-                  ...baseStyles,
-                  borderColor: state.isFocused ? 'grey' : 'transparent',
-                }),
-              }}
+              className="react-select-container"
+              classNamePrefix="react-select"
               options={setoresOptions}
               onChange={(as: any) => setSelectedSetor(as.value)}
               required={true}
@@ -138,36 +138,36 @@ const ModalCadastroCampoResultado = () => {
           </div>
 
 
-          <div><ButtonAdicionar disabled={!isValid} nome="Adicionar" /></div>
-          {!isValid && <p style={{ color: 'red' }}>Todos os campos devem ser preenchidos</p>}
+          <div>
+            <ButtonAdicionar disabled={!isValid} nome="Adicionar" />
+            {!isValid && <p style={{ color: 'red' }}>Todos os campos devem ser preenchidos</p>}
+          </div>
 
         </form>
 
         <Card style={{ background: color }}>
-          <Content >
-            <Title>
+          <CardContent >
+            <CardTitle>
               {/* o Icone vai aqui */}
               <h2>{descricao}</h2>
-            </Title>
-            <PercentSquare>
+            </CardTitle>
+            <CardPercentSquare>
               <div>100%</div>
               <p>atingido</p>
-            </PercentSquare>
-          </Content>
-          <ContentBar>
-            <ProgressBar
+            </CardPercentSquare>
+          </CardContent>
+          <CardContentBar>
+            <CardProgressBar
               className="wrapper"
               completed={100}
               bgColor={'#fff'}
               baseBgColor={'#acacacc3'}
               labelColor={'#000'}
             />
-          </ContentBar>
+          </CardContentBar>
         </Card>
 
       </ModalCampo>
     </>
   )
 }
-
-export default ModalCadastroCampoResultado

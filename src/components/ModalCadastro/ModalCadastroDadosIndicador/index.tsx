@@ -5,31 +5,46 @@ import { isToday, format, parseISO, isAfter } from 'date-fns';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-import ButtonAdicionar from '../../ButtonAdicionar';
-import Input from '../../Input';
+import { ButtonAdicionar } from '../../ButtonAdicionar';
+import { Input } from '../../Input';
 import { IoMdAdd, IoMdClose } from 'react-icons/io'
-
-
 
 import { ModalCampo, TitleModal, SelectModal, DataInput, DateSelector } from './styles';
 import { InContext } from '../../../context/DataContext';
 import { useToast } from '../../../context/toast';
-import api from '../../../services/api';
+import { api } from '../../../services/api';
+import '../styles.css'
+import { useAuth } from '../../../context/auth';
 
+interface DadProps {
+  id_indicador: number;
+  id: number;
+  id_area: number;
+  mes_ano: string;
+  realizado: number;
+  meta: number;
+  peso: number;
+}
 
-const ModalCadastroDadosIndicador = () => {
-  const { digitado, setDigitado } = useContext(InContext);
+export const ModalCadastroDadosIndicador = () => {
+  const { setDigitado, permiteCadastro } = useContext(InContext);
+  const { user } = useAuth();
+
+  const { id_setor } = user;
   const { addToast } = useToast();
 
+  var date = new Date();
+  var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [indicadores, setIndicadores] = useState([]);
-  const [selectedIndicador, setSelectedIndicador] = useState(null);
-  const [selectedDate, setSelectedDate] = useState();
-  const [selectedMeta, setSelectedMeta] = useState(null);
-  const [selectedRealizado, setSelectedRealizado] = useState(null);
-  const [selectedPeso, setSelectedPeso] = useState(null);
-  const [selectedPonderado, setSelectedPonderado] = useState(null);
-  const [startDate, setStartDate] = useState(new Date());
+  const [selectedIndicador, setSelectedIndicador] = useState('');
+  const [selectedMeta, setSelectedMeta] = useState('');
+  const [selectedRealizado, setSelectedRealizado] = useState('');
+  const [selectedPeso, setSelectedPeso] = useState('');
+  const [startDate, setStartDate] = useState(firstDay);
+
+  const [dad, setDad] = useState<DadProps>();
+  const [verificarDataCadastrada, setVerificarDataCadastrada] = useState(false)
 
 
   const [isValid, setIsValid] = useState(false);
@@ -39,28 +54,19 @@ const ModalCadastroDadosIndicador = () => {
     setIsValid(
       selectedIndicador &&
         startDate &&
-        selectedMeta &&
-        selectedRealizado &&
-        selectedPeso &&
-        selectedPonderado
+        selectedRealizado
         ? true : false);
+
   }, [selectedIndicador,
-    startDate,
-    selectedMeta,
     selectedRealizado,
-    selectedPeso,
-    selectedPonderado]);
+    startDate
+  ]);
 
   const selectedRightDate = useMemo(() => {
     return format(startDate, 'Y-MM-dd', {
       locale: ptBR,
     });
   }, [startDate]);
-
-
-
-  console.log(selectedRightDate)
-
 
   function openModal() {
     setIsOpen(true);
@@ -74,43 +80,76 @@ const ModalCadastroDadosIndicador = () => {
 
   useEffect(() => {
     const pegaIndicador = async () => {
-      const response = await api.get(`api/crsind/1`);
+      const response = await api.get(`api/crsind/${id_setor}`);
       setIndicadores(response.data);
     }
     pegaIndicador()
   }, [])
-
   const indicadoresOptions = indicadores.map((indicador: any) => ({
     value: indicador?.id,
     label: indicador?.descricao
   }))
 
 
+  useEffect(() => {
+    const verificaData = async () => {
+      try {
+        const response = await api.get(`api/crsdad/${selectedIndicador}&${selectedRightDate}`)
+        setDad(response.data[0])
+        console.log(response.data[0])
+      } catch (error) {
+        console.log('erro: ', error)
+      }
+    }
+    verificaData()
+
+  }, [selectedIndicador, selectedRightDate])
+
+  useEffect(() => {
+    if (dad?.realizado) {
+      setVerificarDataCadastrada(true)
+      setSelectedMeta('');
+      setSelectedPeso('');
+      setSelectedRealizado('')
+      addToast({
+        type: 'info',
+        title: 'Cadastro já realizado',
+        description: 'Já existe um cadastro pra esse indicador nesse mesmo período'
+      });
+    } else {
+      setVerificarDataCadastrada(false)
+    }
+  }, [dad])
+
 
   const handleInsereDadosIndicadores = useCallback(async (e: { preventDefault: () => void; }) => {
     e.preventDefault()
-    const res = await api.post('api/crsdad',
-      {
-        id_indicador: selectedIndicador,
-        mes_ano: selectedRightDate,
-        meta: selectedMeta,
-        realizado: selectedRealizado,
-        peso: selectedPeso,
+    try {
+
+
+      const res = await api.put(`api/crsdad/${dad?.id}`,
+        {
+          realizado: selectedRealizado,
+        }
+      )
+      setIsOpen(false);
+      setSelectedIndicador('');
+      setSelectedMeta('');
+      setSelectedPeso('');
+      setSelectedRealizado('')
+      setDigitado(null)
+      if (res.status === 201) {
+        addToast({
+          type: 'success',
+          title: 'Cadastro realizado com sucesso'
+        });
       }
-    )
-    setIsOpen(false);
-    setSelectedIndicador(null);
-    setDigitado(null)
-    if (res.status === 201) {
-      addToast({
-        type: 'success',
-        title: 'Cadastro realizado com sucesso'
-      });
-    } else {
+    } catch (error) {
       addToast({
         type: 'error',
         title: 'Ocorreu um erro ao realizar o cadastro'
       });
+      console.log('erro: ', error)
     }
   }, [selectedIndicador,
     selectedRightDate,
@@ -148,13 +187,8 @@ const ModalCadastroDadosIndicador = () => {
           <div>
             <SelectModal
               placeholder="Selecione o Indicador"
-              styles={{
-                control: (baseStyles, state) => ({
-                  ...baseStyles,
-                  borderColor: state.isFocused ? 'grey' : 'transparent',
-                  backgroundColor: '#ccc'
-                }),
-              }}
+              className="react-select-container"
+              classNamePrefix="react-select"
               options={indicadoresOptions}
               onChange={(as: any) => setSelectedIndicador(as.value)}
               required={true}
@@ -171,34 +205,42 @@ const ModalCadastroDadosIndicador = () => {
               />
             </DataInput>
 
-            <Input
+            {/*<Input
               type="float"
               placeholder="Meta"
+              value={dad ? dad?.meta : selectedMeta}
               onChange={(event: any) => setSelectedMeta(event.target.value)}
               name="Meta"
-            />
+              required={false}
+
+              disabled={permiteCadastro}
+              style={permiteCadastro || verificarDataCadastrada ? { background: '#ccc', cursor: 'not-allowed' } : { background: '#fff' }}
+      />*/}
             <Input
-              type="float"
               placeholder="Realizado"
+              value={dad ? dad.realizado : selectedRealizado}
               onChange={(event: any) => setSelectedRealizado(event.target.value)}
               name="Realizado"
+              required={false}
+
+              disabled={verificarDataCadastrada}
+              style={verificarDataCadastrada ? { background: '#ccc', cursor: 'not-allowed' } : { background: '#fff' }}
             />
-            <Input
+            {/*<Input
               type="float"
               placeholder="Peso"
+              value={dad ? dad?.peso : selectedPeso}
               onChange={(event: any) => setSelectedPeso(event.target.value)}
               name="Peso"
-            />
-            <Input
-              type="float"
-              placeholder="Ponderado"
-              onChange={(event: any) => setSelectedPonderado(event.target.value)}
-              name="Ponderado"
-            />
+              required={false}
+              disabled={verificarDataCadastrada}
+              style={verificarDataCadastrada ? { background: '#ccc', cursor: 'not-allowed' } : { background: '#fff' }}
+    />*/}
+
           </div>
 
           <div>
-            <ButtonAdicionar disabled={!isValid} nome="Adicionar" />
+            <ButtonAdicionar disabled={!isValid || verificarDataCadastrada} nome="Adicionar" />
             {!isValid && <p style={{ color: 'red' }}>Todos os campos devem ser preenchidos</p>}
           </div>
 
@@ -210,4 +252,3 @@ const ModalCadastroDadosIndicador = () => {
   )
 }
 
-export default ModalCadastroDadosIndicador

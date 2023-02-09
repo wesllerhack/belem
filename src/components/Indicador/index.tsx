@@ -33,7 +33,7 @@ const SamplePrevArrow = (props: arrowProps) => {
 }
 
 
-const Indicador = () => {
+export const Indicador = () => {
   const { objetivo, setDadosIndicador, indicador, setIndicadorAtual, indicadorAtual } = useContext(InContext);
 
   const settings = {
@@ -53,8 +53,7 @@ const Indicador = () => {
   }, [objetivo, indicadorAtual])
 
   const handleIndicador = useCallback((info: any, index: any) => {
-    setDadosIndicador(info[index].id_dado)
-
+    setDadosIndicador(info[index].crs_dados)
   }, [])
 
   return (
@@ -73,4 +72,3 @@ const Indicador = () => {
   )
 }
 
-export default Indicador

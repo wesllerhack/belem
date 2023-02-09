@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import Modal from 'react-modal';
 import Select from 'react-select';
@@ -10,14 +10,13 @@ export const ModalCampo = styled(Modal)`
   justify-content: space-between;
   align-items: center;
   position: relative;
-  width: 500px;
-  height: 600px;
-  background: #ccc;
+  width: 600px;
+  height: 650px;
+  background: #E8eaea;
   top: 50%;
   left: 50%;
   right: auto;
   bottom: auto;
-  margin-right: -50%;
   transform: translate(-50%, -50%);
   z-index: 999;
   overflow: hidden;
@@ -27,10 +26,8 @@ export const ModalCampo = styled(Modal)`
 
   form {
     width: auto;
-    padding: 0 100px;
-    background: red;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
     height: 100%;
@@ -39,8 +36,9 @@ export const ModalCampo = styled(Modal)`
 
     .react-colorful {
     height: 100px;
-    width: 310px;
-    margin-bottom: 25px;
+    width: 350px;
+    border: 4px solid #191b4e;
+    border-radius: 8px;
     }
 
     .react-colorful__saturation {
@@ -58,7 +56,6 @@ export const ModalCampo = styled(Modal)`
       border-radius: 0;
     }
 
-
   }
 `;
 
@@ -69,6 +66,8 @@ export const TitleModal = styled.div`
     justify-content: space-between;
     margin: 10px;
     padding: 10px;
+    color: #191b4e;
+
 
     button {
       cursor: pointer;
@@ -83,15 +82,16 @@ export const TitleModal = styled.div`
 
 export const SelectModal = styled(Select)`
   position: relative;
-  width: 312px;
+  width: 100%;
   z-index: 10;
+  font-weight: 600;
+  color: #191b4e;
 
 `;
 
 export const Card = styled.div`
-  margin: 24px 48px;
-  margin-top: 20px;
-  width: 80%;
+  margin: 32px 48px;
+  width: 400px;
   padding: 10px;
   height: 150px;
   border-radius: 20px;
@@ -103,7 +103,7 @@ export const Card = styled.div`
   box-shadow: 0px 0px 33px -5px rgba(0,0,0,0.94);
 `;
 
-export const Content = styled.div`
+export const CardContent = styled.div`
   display: flex;
   width: auto;
   height: auto;
@@ -111,7 +111,7 @@ export const Content = styled.div`
   justify-content: space-between;
   margin: 0 24px;
 `;
-export const Title = styled.div`
+export const CardTitle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -125,7 +125,7 @@ export const Title = styled.div`
   }
 
 `;
-export const PercentSquare = styled.div`
+export const CardPercentSquare = styled.div`
   margin-left: 15px;
 
   div {
@@ -147,7 +147,7 @@ export const PercentSquare = styled.div`
   }
 `;
 
-export const ContentBar = styled.div`
+export const CardContentBar = styled.div`
   margin: 0 24px;
 
   .wrapper {

@@ -7,22 +7,27 @@ import { MdAutoGraph } from 'react-icons/md'
 
 import { InContext } from '../../context/DataContext.js';
 
-import { CircularProgressbar } from 'react-circular-progressbar';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { Container, Content, Dados, Indicador, Percent } from './styles'
 
-const DadosIndicador = () => {
-  const { dadosIndicador } = useContext(InContext);
+export const DadosIndicador = () => {
+  const { dadosIndicador, setDadosIndicador } = useContext(InContext);
 
-  if (dadosIndicador.length < 1) {
-    dadosIndicador.realizado1 = 0
-    dadosIndicador.realizado2 = 0
-    dadosIndicador.meta = 0
-    dadosIndicador.peso = 0
-    dadosIndicador.ponderacao = 0
+  if (dadosIndicador == null) {
+    setDadosIndicador({
+      id: 0,
+      id_area: 0,
+      mes_ano: "Não Cadastrado",
+      realizado: 0,
+      meta: 0,
+      peso: 0
+    })
   }
 
-  const percentage = 65;
+  const ponderado = Math.round((dadosIndicador.realizado / dadosIndicador.meta) * dadosIndicador.peso)
+
+  //const percentage = 65;
   return (
     <Container>
       <h2>Dados dos Indicadores</h2>
@@ -34,8 +39,8 @@ const DadosIndicador = () => {
           </Indicador>
           <Percent>
             <CircularProgressbar
-              value={dadosIndicador.realizado1}
-              text={`${dadosIndicador.realizado1}%`}
+              value={0}
+              text={`0%`}
               styles={{
                 text: {
                   fontSize: '30px',
@@ -51,8 +56,8 @@ const DadosIndicador = () => {
           </Indicador>
           <Percent>
             <CircularProgressbar
-              value={dadosIndicador.meta}
-              text={`${dadosIndicador.meta}%`}
+              value={!!dadosIndicador.meta ? dadosIndicador.meta : 0}
+              text={`${!!dadosIndicador.meta ? dadosIndicador.meta : 0}%`}
               styles={{
                 text: {
                   fontSize: '30px',
@@ -68,8 +73,8 @@ const DadosIndicador = () => {
           </Indicador>
           <Percent>
             <CircularProgressbar
-              value={dadosIndicador.realizado2}
-              text={`${dadosIndicador.realizado2}%`}
+              value={!!dadosIndicador.realizado ? dadosIndicador.realizado : 0}
+              text={`${!!dadosIndicador.realizado ? dadosIndicador.realizado : 0}%`}
               styles={{
                 text: {
                   fontSize: '30px',
@@ -85,36 +90,33 @@ const DadosIndicador = () => {
           </Indicador>
           <Percent>
             <CircularProgressbar
-              value={dadosIndicador.peso}
-              text={`${dadosIndicador.peso}%`}
-              styles={{
-                text: {
-                  fontSize: '30px',
-                },
-              }}
+              value={!!dadosIndicador.peso ? dadosIndicador.peso : 0}
+              text={`${!!dadosIndicador.peso ? dadosIndicador.peso : 0}%`}
+              styles={buildStyles({
+                pathColor: !(ponderado < dadosIndicador.peso) ? '#000' : 'red',
+                textSize: '30px',
+              })}
             />
           </Percent>
-        </Dados>
-        <Dados>
-          <Indicador>
-            <MdAutoGraph />
-            <div>Ponderado</div>
-          </Indicador>
-          <Percent>
-            <CircularProgressbar
-              value={dadosIndicador.ponderacao}
-              text={`${dadosIndicador.ponderacao}%`}
-              styles={{
-                text: {
-                  fontSize: '30px',
-                },
-              }}
-            />
-          </Percent>
-        </Dados>
+        </Dados>{
+          <Dados>
+            <Indicador>
+              <MdAutoGraph />
+              <div>Ponderado</div>
+            </Indicador>
+            <Percent>
+              <CircularProgressbar
+                value={!!ponderado ? ponderado : 0}
+                text={`${!!ponderado ? ponderado : 0}%`}
+                styles={buildStyles({
+                  pathColor: !(ponderado < dadosIndicador.peso) ? '#00b0f0' : 'red',
+                  textSize: '30px',
+                })}
+              />
+            </Percent>
+          </Dados>}
       </Content>
     </Container>
   )
 }
 
-export default DadosIndicador

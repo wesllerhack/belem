@@ -22,6 +22,17 @@ export const Container = styled.div`
       background: transparent;
       border: none;
 
+      :disabled{
+
+        svg {
+          background: #D81819;
+
+          :hover{
+            background: #D81819;
+            cursor: not-allowed;
+          }
+        }
+}
 
 
       svg {

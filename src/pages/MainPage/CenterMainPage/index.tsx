@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
-
-import SelectPeriodo from '../../../components/SelectPeriodo';
-import CardCampoResultados from '../../../components/CardCampoResultado';
-import SetorSelector from '../../../components/SetorSelector';
+import { SelectPeriodo } from '../../../components/SelectPeriodo';
+import { CardCampoResultados } from '../../../components/CardCampoResultado';
+import { SetorSelector } from '../../../components/SetorSelector';
 
 import { Container, SubHeader } from './styles';
 import { useEffect } from 'react';
 import { useContext } from 'react';
 import { InContext } from '../../../context/DataContext';
-const CenterMainPage = () => {
+
+export const CenterMainPage = () => {
   const { verifyAnimation, setVerifyAnimation } = useContext(InContext);
 
   useEffect(() => {
@@ -31,5 +30,3 @@ const CenterMainPage = () => {
     </Container>
   );
 };
-
-export default CenterMainPage;

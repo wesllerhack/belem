@@ -4,8 +4,8 @@ import { shade } from "polished";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-
+  align-items: center;
+  justify-content: center;
   width: 45vw;
   padding: 20px 140px;
   height: 75vh;
@@ -14,6 +14,8 @@ export const Container = styled.div`
 export const AvatarContainer = styled.div`
   display: flex;
   justify-content: center;
+  width: 350px;
+
 `;
 
 export const AvatarInput = styled.div`
@@ -21,6 +23,7 @@ export const AvatarInput = styled.div`
   position: relative;
   width: 140px;
   align-self: center;
+
 
   img {
     width: 8rem;

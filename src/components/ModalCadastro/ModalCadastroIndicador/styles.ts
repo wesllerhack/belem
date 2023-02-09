@@ -10,9 +10,9 @@ export const ModalCampo = styled(Modal)`
   justify-content: space-between;
   align-items: center;
   position: relative;
-  width: 500px;
-  height: 500px;
-  background: #ccc;
+  width: 600px;
+  height: 650px;
+  background: #E8eaea;
   top: 50%;
   left: 50%;
   right: auto;
@@ -38,6 +38,7 @@ export const ModalCampo = styled(Modal)`
       width: 100%;
     }
 
+
   }
 `;
 
@@ -62,9 +63,8 @@ export const TitleModal = styled.div`
 `;
 
 export const SelectModal = styled(Select)`
-  width: 312px;
-  padding-top: 15px;
-
+  width: 350px;
+  margin-top: 15px;
 `;
 
 

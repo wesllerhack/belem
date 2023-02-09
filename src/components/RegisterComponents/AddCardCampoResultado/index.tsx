@@ -1,10 +1,7 @@
-import React, { useState } from 'react'
-
-import ModalCadastroCampoResultado from '../../ModalCadastro/ModalCadastroCampoResultado';
+import { ModalCadastroCampoResultado } from '../../ModalCadastro/ModalCadastroCampoResultado';
 import { Container } from './styles';
 
-const SelectPeriodo = () => {
-
+export const AddCardCampoResultado = () => {
 
   return (
     <Container>
@@ -13,5 +10,3 @@ const SelectPeriodo = () => {
     </Container>
   )
 }
-
-export default SelectPeriodo

@@ -8,7 +8,7 @@ interface TooltipProps {
   children: React.ReactNode;
 }
 
-const Tooltip: React.FC<TooltipProps> = ({
+export const Tooltip: React.FC<TooltipProps> = ({
   title,
   className = '',
   children,
@@ -20,5 +20,3 @@ const Tooltip: React.FC<TooltipProps> = ({
     </Container>
   );
 };
-
-export default Tooltip;

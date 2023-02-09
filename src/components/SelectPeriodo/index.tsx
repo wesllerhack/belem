@@ -1,17 +1,18 @@
-import React, { useState } from 'react'
-
 import { Container, DateSelector } from './styles';
 import ptBR from 'date-fns/locale/pt-BR';
 import 'react-datepicker/dist/react-datepicker.css';
+import { useInContext } from '../../context/DataContext';
 
-const SelectPeriodo = () => {
-  const [startDate, setStartDate] = useState(new Date());
+export const SelectPeriodo = () => {
+  const { selectedDate, setSelectedDate } = useInContext()
+
+
 
   return (
     <Container>
       <DateSelector
-        selected={startDate}
-        onChange={(date: Date) => setStartDate(date)}
+        selected={selectedDate}
+        onChange={(date: Date) => setSelectedDate(date)}
         locale={ptBR}
         dateFormat="MMMM 'de' yyyy"
         showMonthYearPicker
@@ -21,5 +22,3 @@ const SelectPeriodo = () => {
     </Container>
   )
 }
-
-export default SelectPeriodo

@@ -1,28 +1,27 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 100%;
-  height: 45px;
-  margin-top: 10px;
-  margin-bottom: 5px;
-  padding-bottom: 10px;
+  width: 350px;
+  height: 40px;
   border-radius: 4px;
+  margin-top: 15px;
 
 
   input {
     width: 100%;
     height: 100%;
     padding: 0 10px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    background: #ccc;
+    border: 2px solid #191b4e;
+    background: #fff;
     border-radius: 5px;
-    color: #092f58;
+    color: #191b4e;
     font-size: 1em;
+    font-weight: 600;
     transition: 0.1s;
 
     :focus {
       outline: none !important;
-      border:2px solid #092f58;
+      border:2px solid #191b4e;
     }
 
     ::-webkit-outer-spin-button,

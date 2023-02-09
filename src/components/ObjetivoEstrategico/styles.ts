@@ -34,7 +34,7 @@ export const SliderOjetivo = styled(Slider)`
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 30px;
+    font-size: 24px;
     font-weight: 600;
     margin: 0 10px;
   }

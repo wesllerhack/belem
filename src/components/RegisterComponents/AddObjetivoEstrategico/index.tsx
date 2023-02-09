@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useContext, useCallback, useEffect } from 'react'
 
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
-import ModalCadastroObjetivoEstrategico from '../../ModalCadastro/ModalCadastroObjetivo';
+import { ModalCadastroObjetivoEstrategico } from '../../ModalCadastro/ModalCadastroObjetivo';
 
 import { Container, SliderOjetivo } from './styles'
 import { InContext } from '../../../context/DataContext.js';
@@ -43,7 +43,7 @@ const PrevArrow = (props: arrowProps) => {
   );
 }
 
-const ObjetivoEstrategico: React.FC = () => {
+export const AddObjetivoEstrategico: React.FC = () => {
   const { objetivo, setIndicador, setDadosIndicador, setObjetivoAtual, objetivoAtual } = useContext(InContext);
 
 
@@ -59,14 +59,14 @@ const ObjetivoEstrategico: React.FC = () => {
 
   useEffect(() => {
     if (objetivo.length > 0) {
-      handleIndicator(objetivo, objetivoAtual)
+      // handleIndicator(objetivo, objetivoAtual)
 
     }
   }, [objetivo, objetivoAtual])
 
   const handleIndicator = useCallback((info: any, index: any) => {
-    setIndicador(info[index].id_indicador)
-    setDadosIndicador(info[index].id_indicador[0].id_dado)
+    //setIndicador(info[index].id_indicador)
+    //setDadosIndicador(info[index].id_indicador[0].id_dado)
 
   }, [])
 
@@ -81,15 +81,6 @@ const ObjetivoEstrategico: React.FC = () => {
         {!!objetivo ?
           <SliderOjetivo afterChange={index => { setObjetivoAtual(index) }} {...settings} >
 
-            {
-              objetivo.map((value: any, index: any) =>
-              (
-                < div key={index} >
-                  <h3 >{value.descricao}</h3>
-                </div>
-              )
-              )
-            }
           </SliderOjetivo>
           : <p>Nenhum campo de resultados selecionado</p>}
       </div >
@@ -97,4 +88,3 @@ const ObjetivoEstrategico: React.FC = () => {
   )
 }
 
-export default ObjetivoEstrategico

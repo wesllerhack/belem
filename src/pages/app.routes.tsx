@@ -5,29 +5,35 @@ import {
   Navigate,
 } from "react-router-dom";
 
-import MainPage from './MainPage'
-import RegisterPage from './RegisterPage';
-import ConsolidatedPage from './ConsolidatedPage';
-import PerfilPage from './PerfilPage';
-import LoginPage from "./Login";
+import { LoginPage } from "./Login";
+import { MainPage } from './MainPage'
+import { RegisterPage } from './RegisterPage';
+import { ConsolidatedPage } from './ConsolidatedPage';
+import { PerfilPage } from './PerfilPage';
+import { useInContext } from "../context/DataContext";
+import { Loading } from "../components/Loading";
+import { useToast } from "../context/toast";
 
-const AppRoutes = () => {
+export const AppRoutes = () => {
+  const { addToast } = useToast()
+
+  const { loading } = useInContext();
+
+  if (!!loading) {
+    return <><Loading /></>
+  }
 
   return (
     <>
-      <Router basename='/'>
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
-        </Routes>
-        <Routes>
-          <Route path="/dashboard" element={<MainPage />} />
-          <Route path="/cadastro" element={<RegisterPage />} />
-          <Route path="/consolidado" element={<ConsolidatedPage />} />
-          <Route path="/perfil" element={<PerfilPage />} />
-        </Routes>
-      </Router>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+      </Routes>
+      <Routes>
+        <Route path="/dashboard" element={<MainPage />} />
+        <Route path="/cadastro" element={<RegisterPage />} />
+        <Route path="/consolidado" element={<ConsolidatedPage />} />
+        <Route path="/perfil" element={<PerfilPage />} />
+      </Routes>
     </>
   )
 }
-
-export default AppRoutes

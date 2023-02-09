@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useContext } from 'react'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 
 import { VscGraph } from 'react-icons/vsc'
@@ -13,7 +13,7 @@ interface OptionsProps {
   setIsSelected: Number;
 }
 
-const OptionsLeftSide = () => {
+export const OptionsLeftSide = () => {
   const { isSelected, setIsSelected } = useContext(InContext);
 
 
@@ -29,7 +29,7 @@ const OptionsLeftSide = () => {
         <li  >
           <Link to="/cadastro" onClick={() => setIsSelected(3)}><MdOutlinePlaylistAdd /><span>Cadastro</span></Link>
         </li>
-        <li  >
+        <li >
           <Link to="/perfil" onClick={() => setIsSelected(4)}><FaUserEdit /><span>Perfil</span></Link>
         </li>
       </ul>
@@ -37,4 +37,3 @@ const OptionsLeftSide = () => {
   )
 }
 
-export default OptionsLeftSide

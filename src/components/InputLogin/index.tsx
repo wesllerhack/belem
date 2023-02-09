@@ -1,15 +1,16 @@
+import { useField } from '@unform/core';
 import React, {
   InputHTMLAttributes,
-  useEffect,
   useRef,
   useState,
   useCallback,
+  useEffect,
 } from 'react';
 import { IconBaseProps } from 'react-icons';
-import { FiAlertCircle } from 'react-icons/fi';
-import { useField } from '@unform/core';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 
-import { Container, Error } from './styles';
+
+import { InputContainer } from './styles';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -17,17 +18,32 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: React.ComponentType<IconBaseProps>;
 }
 
-const InputLogin: React.FC<InputProps> = ({
+export const InputLogin: React.FC<InputProps> = ({
   name,
-  containerStyle = {},
+  placeholder,
+  type,
   icon: Icon,
   ...rest
 }) => {
+
+  const { fieldName, defaultValue, error, registerField } = useField(name);
+
+  const [visible, setVisible] = useState(false)
+
   const inputRef = useRef<HTMLInputElement>(null);
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
 
-  const { fieldName, defaultValue, error, registerField } = useField(name);
+  const handlePasswordVisibility = (event: any) => {
+    event.preventDefault();
+    setVisible(state => !state)
+  }
+
+  let typeInput = type;
+
+  if (type == 'password') {
+    typeInput = !visible ? 'password' : 'text'
+  }
 
   const handleInputFocus = useCallback(() => {
     setIsFocused(true);
@@ -47,29 +63,29 @@ const InputLogin: React.FC<InputProps> = ({
     });
   }, [fieldName, registerField]);
 
+
   return (
-    <Container
-      style={containerStyle}
-      isErrored={!!error}
+    <InputContainer
       isFilled={isFilled}
       isFocused={isFocused}
     >
       {Icon && <Icon size={20} />}
       <input
-        name={name}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
+        placeholder={placeholder}
         defaultValue={defaultValue}
+        type={typeInput}
+        autoComplete='off'
         ref={inputRef}
         {...rest}
+        required
       />
-
-      {error && (
-        <Error title={error}>
-          <FiAlertCircle color="#c53030" size={20} />
-        </Error>
-      )}
-    </Container>
+      {type == 'password' ?
+        < span onClick={handlePasswordVisibility}>
+          {!visible ? <FiEye /> : <FiEyeOff />}
+        </span> : <></>
+      }
+    </InputContainer >
   );
 };
-export default InputLogin;

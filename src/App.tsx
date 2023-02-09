@@ -1,19 +1,20 @@
-import AppRoutes from './pages/app.routes'
+import { BrowserRouter as Router } from 'react-router-dom';
 
+import { AppRoutes } from './pages/app.routes'
 import GlobalStyle from './global'
-import AppProvider from './context'
+import { AppProvider } from './context'
 
-function App() {
+
+export function App() {
 
   return (
-    <div>
-      <AppProvider>
-        <AppRoutes />
-        <GlobalStyle />
-
-      </AppProvider>
-    </div>
+    <>
+      <Router basename="/dev/crs">
+        <AppProvider>
+          <AppRoutes />
+          <GlobalStyle />
+        </AppProvider>
+      </Router>
+    </>
   )
 }
-
-export default App

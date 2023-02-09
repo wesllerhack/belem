@@ -25,6 +25,7 @@ export const Container = styled.div`
 
   div {
     display: flex;
+
     width: 90%;
     height: 100%;
     border-bottom-left-radius : 25px;
@@ -32,6 +33,13 @@ export const Container = styled.div`
     justify-content: space-between;
     margin: 0 50px;
     align-items: center;
+    justify-content: flex-end;
+    span {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
 
     tfoot {
       display: flex;

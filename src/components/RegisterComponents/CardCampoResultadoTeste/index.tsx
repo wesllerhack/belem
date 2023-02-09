@@ -7,16 +7,15 @@ import { useToast } from '../../../context/toast.js';
 
 import ProgressBar from "@ramonak/react-progress-bar";
 
-import dados from '../../../dados.js';
+import { dados } from '../../../dados.js';
 
 
 import { Container, Content, Title, PercentSquare, ContentBar } from './styles'
-const CardCampoResultados = () => {
+export const CardCampoResultados2 = () => {
   const { addToast } = useToast()
   const {
     setObjetivo,
     setIndicador,
-    dadosIndicador,
     setDadosIndicador,
     setObjetivoAtual,
     setIndicadorAtual
@@ -128,5 +127,3 @@ const CardCampoResultados = () => {
     </>
   )
 }
-
-export default CardCampoResultados

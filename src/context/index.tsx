@@ -1,13 +1,14 @@
 import React, { PropsWithChildren } from 'react';
 
+import { AuthProvider } from './auth';
 import { DataContext } from './DataContext';
 import { ToastProvider } from './toast';
 
 
-const AppProvider: React.FC<PropsWithChildren> = ({ children }) => (
-  <DataContext>
-    <ToastProvider>{children}</ToastProvider>
-  </DataContext>
+export const AppProvider: React.FC<PropsWithChildren> = ({ children }) => (
+  <AuthProvider>
+    <DataContext>
+      <ToastProvider>{children}</ToastProvider>
+    </DataContext>
+  </AuthProvider>
 );
-
-export default AppProvider;

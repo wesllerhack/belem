@@ -25,11 +25,13 @@ const animatedIconDesapered = keyframes`
 
 export const Container = styled.div<ContainerProps>`
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   height: 300px;
   width: 100%;
+  margin-top: 25px;
 
   ul {
     list-style: none;

@@ -5,7 +5,7 @@ interface buttonProps {
   disabled: any;
 }
 import { Container } from './styles';
-const ButtonAdicionar = ({ nome, disabled }: buttonProps) => {
+export const ButtonAdicionar = ({ nome, disabled }: buttonProps) => {
   return (
     <Container>
       <button disabled={disabled}>{nome}</button>
@@ -13,4 +13,3 @@ const ButtonAdicionar = ({ nome, disabled }: buttonProps) => {
   )
 }
 
-export default ButtonAdicionar

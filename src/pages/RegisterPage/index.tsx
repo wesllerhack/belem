@@ -1,12 +1,12 @@
 import React from 'react'
 
 
-import CenterRegisterPage from './CenterRegisterPage'
-import RightMainPage from './RightRegisterPage'
-import LeftMainPage from './LeftMainPage'
+import { CenterRegisterPage } from './CenterRegisterPage'
+import { RightMainPage } from './RightRegisterPage'
+import { LeftMainPage } from '../components/LeftMainPage'
 
 import { Container } from './styles'
-const RegisterPage = () => {
+export const RegisterPage = () => {
   return (
     <Container>
       <LeftMainPage />
@@ -15,5 +15,3 @@ const RegisterPage = () => {
     </Container>
   )
 }
-
-export default RegisterPage

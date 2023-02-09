@@ -1,25 +1,14 @@
-import React, { useMemo, useState, useContext, useCallback, useEffect } from 'react'
-
+import { useCallback, useEffect } from 'react'
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
-
 import { Container, SliderOjetivo } from './styles'
-import { InContext } from '../../context/DataContext.js';
-
-
+import { useInContext } from '../../context/DataContext.js';
 import './styles.css'
-
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { FiCornerDownLeft } from 'react-icons/fi';
 
 interface arrowProps {
   className?: any;
   onClick?: any;
-}
-
-interface induxProps {
-  objetivoAtual?: number;
-  setObjetivoAtual?: number;
 }
 
 const NextArrow = (props: arrowProps) => {
@@ -44,9 +33,8 @@ const PrevArrow = (props: arrowProps) => {
   );
 }
 
-const ObjetivoEstrategico: React.FC = () => {
-  const { objetivo, setIndicador, setDadosIndicador, setObjetivoAtual, objetivoAtual } = useContext(InContext);
-
+export const ObjetivoEstrategico = () => {
+  const { objetivo, setIndicador, setDadosIndicador, setObjetivoAtual, objetivoAtual } = useInContext();
 
   const settings = {
     dots: false,
@@ -61,14 +49,12 @@ const ObjetivoEstrategico: React.FC = () => {
   useEffect(() => {
     if (objetivo.length > 0) {
       handleIndicator(objetivo, objetivoAtual)
-
     }
   }, [objetivo, objetivoAtual])
 
   const handleIndicator = useCallback((info: any, index: any) => {
-    setIndicador(info[index].id_indicador)
-    setDadosIndicador(info[index].id_indicador[0].id_dado)
-
+    setIndicador(info[index].crsindicador)
+    setDadosIndicador(info[index].crsindicador[0].crs_dados)
   }, [])
 
   return (
@@ -79,10 +65,10 @@ const ObjetivoEstrategico: React.FC = () => {
           <SliderOjetivo afterChange={index => { setObjetivoAtual(index) }} {...settings} >
 
             {
-              objetivo.map((value: any, index: any) =>
+              objetivo.map((value: any, index: number) =>
               (
                 < div key={index} >
-                  <h3 >{value.descricao}</h3>
+                  <h3>{value.descricao}{console.log(index, value)}</h3>
                 </div>
               )
               )
@@ -93,5 +79,3 @@ const ObjetivoEstrategico: React.FC = () => {
     </Container >
   )
 }
-
-export default ObjetivoEstrategico

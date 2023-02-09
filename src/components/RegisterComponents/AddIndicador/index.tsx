@@ -5,7 +5,7 @@ import { IoMdAdd } from 'react-icons/io'
 
 import { Container, SliderIndicador } from './styles'
 import { InContext } from '../../../context/DataContext.js';
-import ModalCadastroIndicador from '../../ModalCadastro/ModalCadastroIndicador';
+import { ModalCadastroIndicador } from '../../ModalCadastro/ModalCadastroIndicador';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -34,7 +34,7 @@ const SamplePrevArrow = (props: arrowProps) => {
 }
 
 
-const Indicador = () => {
+export const AddIndicador = () => {
   const { objetivo, setDadosIndicador, indicador, setIndicadorAtual, indicadorAtual } = useContext(InContext);
 
   const settings = {
@@ -66,15 +66,9 @@ const Indicador = () => {
       </p>
       <div>
         <SliderIndicador afterChange={index => { setIndicadorAtual(index) }}  {...settings}>
-          {indicador.map((value: any, index: any) => (
-            <div key={index}>
-              <h3>{value.descricao}</h3>
-            </div>
-          ))}
+
         </SliderIndicador>
       </div>
     </Container>
   )
 }
-
-export default Indicador

@@ -1,11 +1,11 @@
 import React from 'react'
 
-import CenterMainPage from './CenterMainPage'
-import RightMainPage from './RightMainPage'
-import LeftMainPage from './LeftMainPage'
+import { CenterMainPage } from './CenterMainPage'
+import { RightMainPage } from './RightMainPage'
+import { LeftMainPage } from '../components/LeftMainPage'
 
 import { Container } from './styles'
-const ConsolidatedPage = () => {
+export const ConsolidatedPage = () => {
   return (
     <Container>
       <LeftMainPage />
@@ -14,5 +14,3 @@ const ConsolidatedPage = () => {
     </Container>
   )
 }
-
-export default ConsolidatedPage;

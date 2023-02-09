@@ -1,20 +1,21 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 
 
-import ButtonAdicionar from '../../ButtonAdicionar';
-import Input from '../../Input';
+import { ButtonAdicionar } from '../../ButtonAdicionar';
+import { Input } from '../../Input';
 import { IoMdAdd, IoMdClose } from 'react-icons/io'
 
 
 
 import { ModalCampo, TitleModal, SelectModal } from './styles';
-import { InContext } from '../../../context/DataContext';
-import api from '../../../services/api';
+import { useInContext } from '../../../context/DataContext';
+import { api } from '../../../services/api';
 import { useToast } from '../../../context/toast';
 
+import '../styles.css'
 
-const ModalCadastroObjetivoEstrategico = () => {
-  const { digitado, setDigitado } = useContext(InContext);
+export const ModalCadastroObjetivoEstrategico = () => {
+  const { setDigitado, permiteCadastro } = useInContext();
   const { addToast } = useToast()
 
 
@@ -96,20 +97,11 @@ const ModalCadastroObjetivoEstrategico = () => {
     setIsOpen(false);
   }
 
-  const customStyles = {
-    menuList: (provided: any, state: any) => {
-      // console.log("get styles for menu with", provided, state);
-      return {
-        ...provided,
-        maxHeight: "200px"
-      };
-    }
-  };
 
 
   return (
     <>
-      <button onClick={openModal}><IoMdAdd /></button>
+      <button disabled={!!permiteCadastro} onClick={openModal}><IoMdAdd /></button>
       <ModalCampo
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
@@ -139,7 +131,6 @@ const ModalCadastroObjetivoEstrategico = () => {
               placeholder="Selecione o Setor"
               onChange={(as: any) => { setSelectedSetor(as.value); setSelectedCampo(null) }}
               options={setoresOptions}
-              styles={customStyles}
               required={true}
             />
 
@@ -147,7 +138,6 @@ const ModalCadastroObjetivoEstrategico = () => {
               placeholder="Selecione o Campo de resultados"
               onChange={(as: any) => setSelectedCampo(as.value)}
               options={camposOptions}
-              styles={customStyles}
               required
             />
 
@@ -172,5 +162,3 @@ const ModalCadastroObjetivoEstrategico = () => {
     </>
   )
 }
-
-export default ModalCadastroObjetivoEstrategico

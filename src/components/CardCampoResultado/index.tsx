@@ -1,59 +1,90 @@
-import React, { useCallback, useContext, useEffect } from 'react'
-import { FaStoreAlt } from 'react-icons/fa'
-import { TbUsers } from 'react-icons/tb'
-import { InContext } from '../../context/DataContext.js';
-
+import { useInContext } from '../../context/DataContext.js';
 import { useToast } from '../../context/toast.js';
-
-import ProgressBar from "@ramonak/react-progress-bar";
-
-import dados from '../../dados.js';
-
-
 import { Container, Content, Title, PercentSquare, ContentBar } from './styles'
-const CardCampoResultados = () => {
+import ProgressBar from "@ramonak/react-progress-bar";
+import { api } from '../../services/api.js';
+import { useEffect, useState } from 'react';
+
+interface AtingidoProps {
+  campo_de_resultado: string;
+  id_campo: number;
+  meta: number;
+  peso: number;
+  ponderado: number;
+}
+
+interface MergedProps {
+  id: number;
+  crsobjetivoestrategico: Object;
+  color: string;
+  id_area: number;
+  campo_de_resultado: string;
+  id_campo: number;
+  meta: number;
+  peso: number;
+  ponderado: number;
+}
+
+export const CardCampoResultados = () => {
   const { addToast } = useToast()
-  const {
-    setObjetivo,
-    setIndicador,
-    dadosIndicador,
-    setDadosIndicador,
-    setObjetivoAtual,
-    setIndicadorAtual
-  } = useContext(InContext);
+  const { dadosApi, handleData, handleReset, setorSelected, selectedRightDate } = useInContext();
+  const [atingido, setAtingido] = useState<AtingidoProps[]>([]);
 
+  useEffect(() => {
+    const loadAtingido = async () => {
+      const response = await api.get(`api/cdrtotal/${setorSelected.value}&${selectedRightDate}`);
+      setAtingido(response.data)
+    }
+    if (!!setorSelected && !!selectedRightDate) {
+      loadAtingido()
+    }
+  }, [setorSelected, selectedRightDate])
 
-  const handleObjetivo = useCallback((info: any) => {
-    setObjetivoAtual(0)
-    setObjetivo(info);
-  }, []);
+  const merged = dadosApi.map((screen) => ({
+    ...atingido.find((o) => o.id_campo === screen.id),
+    ...screen
+  }));
 
-  const handleIndicador = useCallback((info: any) => {
-    setIndicadorAtual(0)
-    setIndicador(info);
-  }, []);
-
-  const handleDadosIndicador = useCallback((info: any) => {
-    setDadosIndicador(info);
-  }, []);
 
   return (
     <>
-      {dados.map((value: any, index: any) => (
-
+      {merged.map((value: any, index: number) => (
         <Container
           key={index}
           style={{ background: value.color }}
           onClick={() => {
-            if (value.id_objetivo_estrategico && value.id_objetivo_estrategico[0].id_indicador && value.id_objetivo_estrategico[0].id_indicador[0].id_dado) {
-              handleObjetivo(value.id_objetivo_estrategico)
-              handleIndicador(value.id_objetivo_estrategico[0].id_indicador)
-              handleDadosIndicador(value.id_objetivo_estrategico[0].id_indicador[0].id_dado)
+            if (value.crsobjetivoestrategico[0] != undefined) {
+              if (value.crsobjetivoestrategico[0].crsindicador[0] != undefined) {
+                if (!!value.crsobjetivoestrategico[0].crsindicador[0].crs_dados) {
+                  console.log(value.crsobjetivoestrategico[0])
+
+                  handleData(
+                    value.crsobjetivoestrategico,
+                    value.crsobjetivoestrategico[0].crsindicador,
+                    value.crsobjetivoestrategico[0].crsindicador[0].crs_dados
+                  )
+                } else {
+                  handleReset();
+                  addToast({
+                    type: 'error',
+                    title: 'Erro ao selecionar Campo de resultado',
+                    description: 'Falta realizar cadastro dos Dados dos indicadores)'
+                  });
+                }
+              } else {
+                handleReset();
+                addToast({
+                  type: 'error',
+                  title: 'Erro ao selecionar Campo de resultado',
+                  description: 'Falta realizar cadastro dos Indicadores e Dados dos indicadores)'
+                });
+              }
             } else {
+              handleReset();
               addToast({
                 type: 'error',
                 title: 'Erro ao selecionar Campo de resultado',
-                description: 'Falta realizar algum dos cadastros(Objetivo estratégico, Indicador ou Dados dos indicadores)'
+                description: 'Falta realizar cadastro do Objetico Estratégico, Indicadores e Dados dos indicadores)'
               });
             }
           }}
@@ -64,14 +95,14 @@ const CardCampoResultados = () => {
               <h2>{value.descricao}</h2>
             </Title>
             <PercentSquare>
-              <div>68%</div>
+              <div>{!!value.peso ? Math.round((100 * value.ponderado) / value.peso) : 0}%</div>
               <p>atingido</p>
             </PercentSquare>
           </Content>
           <ContentBar>
             <ProgressBar
               className="wrapper"
-              completed={68}
+              completed={!!value.peso ? Math.round((100 * value.ponderado) / value.peso) : 0}
               bgColor={'#fff'}
               baseBgColor={'#acacacc3'}
               labelColor={'#000'}
@@ -79,54 +110,7 @@ const CardCampoResultados = () => {
           </ContentBar>
         </Container>
       ))
-
       }
-      {/*
-      <Container style={{ background: 'blue' }}>
-        <Content >
-          <Title>
-            <TbUsers />
-            <h2>Patrimônio humano</h2>
-          </Title>
-          <PercentSquare>
-            <div>40%</div>
-            <p>atingido</p>
-          </PercentSquare>
-        </Content>
-        <ContentBar>
-          <ProgressBar
-            className="wrapper"
-            completed={40}
-            bgColor={'#fff'}
-            baseBgColor={'#acacacc3'}
-            labelColor={'#000'}
-          />
-        </ContentBar>
-      </Container>
-
-      <Container style={{ background: 'green' }}>
-        <Content >
-          <Title>
-            <TbUsers />
-            <h2>Processos de gente e gestão</h2>
-          </Title>
-          <PercentSquare>
-            <div>90%</div>
-            <p>atingido</p>
-          </PercentSquare>
-        </Content>
-        <ContentBar>
-          <ProgressBar
-            className="wrapper"
-            completed={90}
-            bgColor={'#fff'}
-            baseBgColor={'#acacacc3'}
-            labelColor={'#000'}
-          />
-        </ContentBar>
-      </Container>*/}
     </>
   )
 }
-
-export default CardCampoResultados

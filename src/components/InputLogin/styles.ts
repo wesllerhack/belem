@@ -1,71 +1,87 @@
 import styled, { css } from 'styled-components';
 
-import Tooltip from '../Tooltip';
 
-interface ContainerProps {
+interface InputProps {
   isFocused: boolean;
   isFilled: boolean;
-  isErrored: boolean;
 }
 
-export const Container = styled.div<ContainerProps>`
-  box-sizing: border-box;
-  background: #232129;
-  border-radius: 10px;
-  padding: 16px;
-  width: 100%;
-  border: 2px solid #232129;
-  color: #666360;
+
+export const InputContainer = styled.div<InputProps>`
   display: flex;
+  flex-direction: row;
   align-items: center;
-  & + div {
-    margin-top: 8px;
-  }
-  ${props =>
-    props.isErrored &&
-    css`
-      color: #c63030;
-      border-color: #c63030;
-    `}
+  justify-content: flex-end;
+  width: 100%;
+  min-width: 250px;
+
+  height: 40px;
+  border: 2px solid #191b4e;
+  border-radius: 10px;
+  margin-top: 15px;
+  background: #fff;
+
+
   ${props =>
     props.isFocused &&
     css`
-      color: #ff9000;
-      border-color: #ff9000;
+      transition: 0.3s;
+      border-color: #ffcc29;
     `}
   ${props =>
     props.isFilled &&
     css`
-      color: #ff9000;
+      transition: 0.3s;
     `}
-  input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    color: #f4ede8;
-    &:focus {
-      outline: none;
-    }
-    &::placeholder {
-      color: #666360;
-    }
-  }
-  svg {
-    margin-right: 16px;
-  }
-`;
 
-export const Error = styled(Tooltip)`
-  height: 20px;
-  margin-left: 16px;
-  svg {
-    margin: 0;
+
+  input {
+    background: transparent;
+    width: 100%;
+    height: 35px;
+    margin-left: 10px;
+    margin-right: 5px;
+    border: none;
+    color: #191b4e;
+
+    &:focus {
+        outline: none;
+        transition: 0.3s;
+
+        &::placeholder {
+          transition: 0.3s;
+          color: #ccc;
+        }
+
+      }
+
+      &::placeholder{
+        color: #191b4e;
+        font-size: 0.90rem;
+      }
+
+
   }
-  span {
-    background: #c53030;
-    color: #fff;
-    &::before {
-      border-color: #c53030 transparent;
+
+   > svg {
+    color: #191b4e;
+    margin-left: 10px;
+  }
+
+    span {
+      display: flex;
+      align-items: center;
+      margin-right: 10px;
+      border: none;
+      background: #fff;
+      cursor: pointer;
+
+
+      svg {
+
+        font-size: 1rem;
+      }
     }
-  }
+
+
 `;

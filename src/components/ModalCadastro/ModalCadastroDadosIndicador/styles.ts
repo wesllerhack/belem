@@ -11,9 +11,9 @@ export const ModalCampo = styled(Modal)`
   justify-content: space-between;
   align-items: center;
   position: relative;
-  width: 500px;
-  height: 600px;
-  background: #fff;
+  width: 600px;
+  height: 650px;
+  background: #E8eaea;
   top: 50%;
   left: 50%;
   right: auto;
@@ -64,13 +64,12 @@ export const TitleModal = styled.div`
 `;
 
 export const SelectModal = styled(Select)`
-  width: 312px;
+  width: 350px;
 
 
 `;
 
 export const DataInput = styled.div`
-   background: #ccc;
   width: 310px;
   height: 40px;
   margin-top: 15px;
@@ -81,13 +80,13 @@ export const DataInput = styled.div`
 `;
 
 export const DateSelector = styled(DatePicker)`
-  width: 300px;
-  border-radius: 10px;
-  background: #ccc;
-  margin-left: 10px;
+  width: 350px;
+  border-radius: 6px;
+  padding-left: 10px;
   height: 40px;
-  border: none;
   font-size: 16px;
+  border: 2px solid #191b4e;
+
 
     &:focus {
       outline: none;

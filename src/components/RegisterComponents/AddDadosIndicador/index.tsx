@@ -1,10 +1,10 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 
 import { FiTarget } from 'react-icons/fi'
 import { GrCompliance, GrTask } from 'react-icons/gr'
 import { GiWeight } from 'react-icons/gi'
 import { MdAutoGraph } from 'react-icons/md'
-import ModalCadastroDadosIndicador from '../../ModalCadastro/ModalCadastroDadosIndicador/index.js'
+import { ModalCadastroDadosIndicador } from '../../ModalCadastro/ModalCadastroDadosIndicador/index.js'
 
 
 import { InContext } from '../../../context/DataContext.js';
@@ -12,24 +12,18 @@ import { InContext } from '../../../context/DataContext.js';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { Container, Content, Dados, Indicador, Percent } from './styles'
+import { ModalCadastroDadosIndicadorComPermissao } from '../../ModalCadastro/ModalCadastroDadosIndicadorComPermissao/index.js'
 
-const DadosIndicador = () => {
-  const { dadosIndicador } = useContext(InContext);
+export const AddDadosIndicador = () => {
+  const { dadosIndicador, permiteCadastro } = useContext(InContext);
 
-  if (dadosIndicador.length < 1) {
-    dadosIndicador.realizado1 = 0
-    dadosIndicador.realizado2 = 0
-    dadosIndicador.meta = 0
-    dadosIndicador.peso = 0
-    dadosIndicador.ponderacao = 0
-  }
 
   const percentage = 65;
   return (
     <Container>
       <p>
         <h2>Dados dos Indicadores</h2>
-        <ModalCadastroDadosIndicador />
+        {!permiteCadastro ? <ModalCadastroDadosIndicadorComPermissao /> : <ModalCadastroDadosIndicador />}
       </p>
       <Content>
         <Dados>
@@ -39,8 +33,8 @@ const DadosIndicador = () => {
           </Indicador>
           <Percent>
             <CircularProgressbar
-              value={dadosIndicador.realizado1}
-              text={`${dadosIndicador.realizado1}%`}
+              value={0}
+              text={`${0}%`}
               styles={{
                 text: {
                   fontSize: '30px',
@@ -56,8 +50,8 @@ const DadosIndicador = () => {
           </Indicador>
           <Percent>
             <CircularProgressbar
-              value={dadosIndicador.meta}
-              text={`${dadosIndicador.meta}%`}
+              value={0}
+              text={`${0}%`}
               styles={{
                 text: {
                   fontSize: '30px',
@@ -73,8 +67,8 @@ const DadosIndicador = () => {
           </Indicador>
           <Percent>
             <CircularProgressbar
-              value={dadosIndicador.realizado2}
-              text={`${dadosIndicador.realizado2}%`}
+              value={0}
+              text={`${0}%`}
               styles={{
                 text: {
                   fontSize: '30px',
@@ -90,8 +84,8 @@ const DadosIndicador = () => {
           </Indicador>
           <Percent>
             <CircularProgressbar
-              value={dadosIndicador.peso}
-              text={`${dadosIndicador.peso}%`}
+              value={0}
+              text={`${0}%`}
               styles={{
                 text: {
                   fontSize: '30px',
@@ -107,8 +101,8 @@ const DadosIndicador = () => {
           </Indicador>
           <Percent>
             <CircularProgressbar
-              value={dadosIndicador.ponderacao}
-              text={`${dadosIndicador.ponderacao}%`}
+              value={0}
+              text={`${0}%`}
               styles={{
                 text: {
                   fontSize: '30px',
@@ -121,5 +115,3 @@ const DadosIndicador = () => {
     </Container>
   )
 }
-
-export default DadosIndicador

@@ -4,13 +4,15 @@ import { shade } from 'polished';
 
 export const Container = styled.div`
   display: flex;
+  max-width: 500px;
+  min-width: 350px;
   padding-top: 20px;
   padding-bottom: 5px;
 
   button {
-    background: #25316D;
-    width: 100%;
-    height: 40px;
+    background: #191b4e;
+    width: 350px;
+    height: 45px;
     border: none;
     border-radius: 8px;
     color: yellow;

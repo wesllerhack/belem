@@ -1,11 +1,8 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 
-import Select from 'react-select';
-import Modal from 'react-modal';
 
-
-import ButtonAdicionar from '../../ButtonAdicionar';
-import Input from '../../Input';
+import { ButtonAdicionar } from '../../ButtonAdicionar';
+import { Input } from '../../Input';
 import { IoMdAdd, IoMdClose } from 'react-icons/io'
 
 
@@ -13,12 +10,14 @@ import { IoMdAdd, IoMdClose } from 'react-icons/io'
 import { ModalCampo, TitleModal, SelectModal } from './styles';
 import { InContext } from '../../../context/DataContext';
 import { useToast } from '../../../context/toast';
-import api from '../../../services/api';
+import { api } from '../../../services/api';
 
+import '../styles.css'
 
-const ModalCadastroIndicador = () => {
-  const { digitado, setDigitado } = useContext(InContext);
+export const ModalCadastroIndicador = () => {
+  const { setDigitado, permiteCadastro } = useContext(InContext);
   const { addToast } = useToast()
+
 
 
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -115,20 +114,10 @@ const ModalCadastroIndicador = () => {
   }
 
 
-  const customStyles = {
-    menuList: (provided: any, state: any) => {
-      // console.log("get styles for menu with", provided, state);
-      return {
-        ...provided,
-        maxHeight: "200px"
-      };
-    }
-  };
-
 
   return (
     <>
-      <button onClick={openModal}><IoMdAdd /></button>
+      <button disabled={!!permiteCadastro} onClick={openModal}><IoMdAdd /></button>
       <ModalCampo
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
@@ -157,24 +146,27 @@ const ModalCadastroIndicador = () => {
             <SelectModal
               placeholder="Selecione o Setor"
               onChange={(as: any) => { setSelectedSetor(as.value); setSelectedCampo(null) }}
+              className="react-select-container"
+              classNamePrefix="react-select"
               options={setoresOptions}
-              styles={customStyles}
               required={true}
             />
 
             <SelectModal
               placeholder="Selecione o Campo de resultados"
               onChange={(as: any) => { setSelectedCampo(as.value); setSelectedObjetivo(null) }}
+              className="react-select-container"
+              classNamePrefix="react-select"
               options={camposOptions}
-              styles={customStyles}
               required
             />
 
             <SelectModal
               placeholder="Selecione o Objetivo Estratégico"
               onChange={(as: any) => setSelectedObjetivo(as.value)}
+              className="react-select-container"
+              classNamePrefix="react-select"
               options={objetivoOptions}
-              styles={customStyles}
               required
             />
 
@@ -199,5 +191,3 @@ const ModalCadastroIndicador = () => {
     </>
   )
 }
-
-export default ModalCadastroIndicador

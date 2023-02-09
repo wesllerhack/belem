@@ -20,6 +20,8 @@ export const Container = styled.div`
 export const DateSelector = styled(DatePicker)`
     display: flex;
     height: 40px;
+    width: 200px;
+
     align-items: center;
     font-weight: 600;
     font-size: 20px;

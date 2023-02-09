@@ -1,16 +1,28 @@
-import React, { useEffect, useState } from 'react'
-import api from '../../services/api';
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useInContext } from '../../context/DataContext';
+import { api } from '../../services/api';
 
 import { Container, Selector } from './styles'
 
-const SetorSelector = () => {
-  const [setores, setSetores] = useState([]);
-  const [selectedSetor, setSelectedSetor] = useState(null);
+interface SetoresProps {
+  value: number;
+  label: string;
+}
+
+export const SetorSelector = () => {
+  const navigate = useNavigate()
+  const [setores, setSetores] = useState<SetoresProps[]>([]);
+  const { setorSelected, setSetorSelected, handleReset, permiteSelecionarSetores } = useInContext();
 
   useEffect(() => {
     const pegaSetor = async () => {
       const response = await api.get('api/areas');
-      setSetores(response.data);
+      if (response.data.status !== 'Token is Expired') {
+        setSetores(response.data);
+      } else {
+        navigate('/')
+      }
     }
     pegaSetor()
   }, [])
@@ -20,11 +32,11 @@ const SetorSelector = () => {
     label: setor?.descricao
   }))
 
-
   return (
-    <Container>
+    <Container >
       <Selector
-        placeholder="Selecione o Setor"
+        isDisabled={!!permiteSelecionarSetores}
+        placeholder={!setorSelected.label ? "Selecione o Setor" : setorSelected.label}
         styles={{
           control: (baseStyles, state) => ({
             ...baseStyles,
@@ -34,11 +46,9 @@ const SetorSelector = () => {
           }),
         }}
         options={setoresOptions}
-        onChange={() => { }}
+        onChange={(set: any) => { setSetorSelected(set); handleReset() }}
         required={true}
       />
     </Container>
   )
 }
-
-export default SetorSelector
