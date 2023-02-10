@@ -23,7 +23,7 @@ export const CenterMainPage = () => {
     <Container verify={verifyAnimation}>
       <h1>Campo de Resultados</h1>
       <SubHeader>
-        <SelectPeriodo />
+        <SelectPeriodo disabled={false} />
         <SetorSelector />
       </SubHeader>
       <CardCampoResultados />

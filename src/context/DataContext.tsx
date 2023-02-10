@@ -137,7 +137,6 @@ export const DataContext: React.FC<PropsWithChildren> = ({ children }) => {
     setTimeout(() => {
       setLoading(false);
     }, 3000);
-
   }
   useEffect(() => {
     if (location.pathname == '/') {
@@ -160,7 +159,6 @@ export const DataContext: React.FC<PropsWithChildren> = ({ children }) => {
         const response = await api.get(`api/crscdr/${setorSelected.value}`);
         setDadosApi(response.data)
         setLoading(false)
-        console.log(dadosApi)
       } catch (error) {
         console.log('erro: ', error)
       }
@@ -193,7 +191,7 @@ export const DataContext: React.FC<PropsWithChildren> = ({ children }) => {
         addToast({
           type: 'error',
           title: 'Erro ao realizar login',
-          description: 'Seu login está incompleto, favor entrar em contato com o adminitrador para verifica-lo'
+          description: 'Seu login está incompleto, favor entrar em contato com o administrador para verifica-lo'
         });
 
       }
@@ -231,10 +229,6 @@ export const DataContext: React.FC<PropsWithChildren> = ({ children }) => {
       locale: ptBR,
     });
   }, [selectedDate]);
-
-  useEffect(() => {
-    const response = api.post('', { selectedRightDate, setorSelected })
-  }, [])
 
 
   useEffect(() => {

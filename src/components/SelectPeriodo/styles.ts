@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import DatePicker from 'react-datepicker';
 
+interface prop {
+  disabled: Boolean;
+}
 
 export const Container = styled.div`
   display: flex;
@@ -17,7 +20,7 @@ export const Container = styled.div`
 
 `;
 
-export const DateSelector = styled(DatePicker)`
+export const DateSelector = styled(DatePicker) <prop>`
     display: flex;
     height: 40px;
     width: 200px;

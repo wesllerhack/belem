@@ -61,7 +61,7 @@ export const Table = () => {
                 <td>{dad.campo_de_resultado}</td>
                 <td>{dad.objetivo_estrategico}</td>
                 <td>{dad.indicadores}</td>
-                <td>{((95 * dad.peso) / 100)}</td>
+                <td>{/*((95 * dad.peso) / 100)*/}</td>
                 <td>{dad.meta}</td>
                 <td>{dad.realizado}</td>
                 <td>{dad.peso}%</td>

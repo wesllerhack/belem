@@ -12,10 +12,8 @@ import { ConsolidatedPage } from './ConsolidatedPage';
 import { PerfilPage } from './PerfilPage';
 import { useInContext } from "../context/DataContext";
 import { Loading } from "../components/Loading";
-import { useToast } from "../context/toast";
 
 export const AppRoutes = () => {
-  const { addToast } = useToast()
 
   const { loading } = useInContext();
 
@@ -32,7 +30,7 @@ export const AppRoutes = () => {
         <Route path="/dashboard" element={<MainPage />} />
         <Route path="/cadastro" element={<RegisterPage />} />
         <Route path="/consolidado" element={<ConsolidatedPage />} />
-        <Route path="/perfil" element={<PerfilPage />} />
+        {/*<Route path="/perfil" element={<PerfilPage />} />*/}
       </Routes>
     </>
   )

@@ -29,9 +29,9 @@ export const OptionsLeftSide = () => {
         <li  >
           <Link to="/cadastro" onClick={() => setIsSelected(3)}><MdOutlinePlaylistAdd /><span>Cadastro</span></Link>
         </li>
-        <li >
+        {/* <li >
           <Link to="/perfil" onClick={() => setIsSelected(4)}><FaUserEdit /><span>Perfil</span></Link>
-        </li>
+  </li>*/}
       </ul>
     </Container>
   )

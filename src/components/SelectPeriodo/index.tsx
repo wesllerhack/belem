@@ -3,14 +3,19 @@ import ptBR from 'date-fns/locale/pt-BR';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useInContext } from '../../context/DataContext';
 
-export const SelectPeriodo = () => {
+interface prop {
+  disabled: Boolean;
+}
+
+export const SelectPeriodo = ({ disabled }: prop) => {
   const { selectedDate, setSelectedDate } = useInContext()
 
 
 
   return (
-    <Container>
+    <Container >
       <DateSelector
+        disabled={!!disabled}
         selected={selectedDate}
         onChange={(date: Date) => setSelectedDate(date)}
         locale={ptBR}

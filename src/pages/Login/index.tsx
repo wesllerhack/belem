@@ -42,8 +42,6 @@ export const LoginPage = () => {
         await schema.validate(data, {
           abortEarly: false,
         });
-        var stat;
-
 
         await signIn({ login: data.user, password: data.password });
 

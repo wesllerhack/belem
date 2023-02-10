@@ -68,7 +68,7 @@ export const ObjetivoEstrategico = () => {
               objetivo.map((value: any, index: number) =>
               (
                 < div key={index} >
-                  <h3>{value.descricao}{console.log(index, value)}</h3>
+                  <h3>{value.descricao}{/*console.log(index, value)*/}</h3>
                 </div>
               )
               )

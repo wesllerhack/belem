@@ -9,7 +9,6 @@ export const Container = styled.div`
   width: 100%;
   height: 130px;
   margin-top: 20px;
-  //background: yellow;
 
   h2 {
     flex: 0;

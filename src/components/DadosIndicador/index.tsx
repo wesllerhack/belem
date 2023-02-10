@@ -35,17 +35,17 @@ export const DadosIndicador = () => {
         <Dados>
           <Indicador>
             <GrCompliance />
-            <div>Realizado 2021</div>
+            <div>Realizado (ano anterior)</div>
           </Indicador>
           <Percent>
             <CircularProgressbar
               value={0}
               text={`0%`}
-              styles={{
-                text: {
-                  fontSize: '30px',
-                },
-              }}
+              styles={buildStyles({
+                pathColor: '#25316D',
+                textSize: '30px',
+                textColor: '#000'
+              })}
             />
           </Percent>
         </Dados>
@@ -58,11 +58,11 @@ export const DadosIndicador = () => {
             <CircularProgressbar
               value={!!dadosIndicador.meta ? dadosIndicador.meta : 0}
               text={`${!!dadosIndicador.meta ? dadosIndicador.meta : 0}%`}
-              styles={{
-                text: {
-                  fontSize: '30px',
-                },
-              }}
+              styles={buildStyles({
+                pathColor: '#25316D',
+                textSize: '30px',
+                textColor: '#000'
+              })}
             />
           </Percent>
         </Dados>
@@ -75,11 +75,11 @@ export const DadosIndicador = () => {
             <CircularProgressbar
               value={!!dadosIndicador.realizado ? dadosIndicador.realizado : 0}
               text={`${!!dadosIndicador.realizado ? dadosIndicador.realizado : 0}%`}
-              styles={{
-                text: {
-                  fontSize: '30px',
-                },
-              }}
+              styles={buildStyles({
+                pathColor: '#25316D',
+                textSize: '30px',
+                textColor: '#000'
+              })}
             />
           </Percent>
         </Dados>
@@ -93,8 +93,9 @@ export const DadosIndicador = () => {
               value={!!dadosIndicador.peso ? dadosIndicador.peso : 0}
               text={`${!!dadosIndicador.peso ? dadosIndicador.peso : 0}%`}
               styles={buildStyles({
-                pathColor: !(ponderado < dadosIndicador.peso) ? '#000' : 'red',
+                pathColor: '#25316D',
                 textSize: '30px',
+                textColor: '#000'
               })}
             />
           </Percent>
@@ -109,8 +110,20 @@ export const DadosIndicador = () => {
                 value={!!ponderado ? ponderado : 0}
                 text={`${!!ponderado ? ponderado : 0}%`}
                 styles={buildStyles({
-                  pathColor: !(ponderado < dadosIndicador.peso) ? '#00b0f0' : 'red',
+                  pathColor: !!(ponderado <= ((90 * dadosIndicador.peso) / 100)) &&
+                    //console.log('vermelho');
+                    '#ff0000' ||
+                    !!(ponderado <= ((95 * dadosIndicador.peso) / 100)) &&
+                    //console.log('amarelo')
+                    '#ffff00' ||
+                    !!(ponderado <= ((100 * dadosIndicador.peso) / 100)) &&
+                    //console.log('verde')
+                    '#00ff00' ||
+                    //!!(ponderado > dadosIndicador.peso) &&
+                    //console.log('azul')
+                    '#00b0f0',
                   textSize: '30px',
+                  textColor: '#000'
                 })}
               />
             </Percent>

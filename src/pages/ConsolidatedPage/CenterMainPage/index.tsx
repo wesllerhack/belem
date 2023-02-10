@@ -20,7 +20,7 @@ export const CenterMainPage = () => {
     <Container>
       <h1>Consolidado</h1>
       <SubHeader>
-        <SelectPeriodo />
+        <SelectPeriodo disabled={false} />
         <SetorSelector />
       </SubHeader>
       <User>
