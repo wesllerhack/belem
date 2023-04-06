@@ -156,8 +156,8 @@ export const DataContext: React.FC<PropsWithChildren> = ({ children }) => {
     setLoading(true)
     async function loadCardSetor() {
       try {
-        const response = await api.get(`api/crscdr/${setorSelected.value}`);
-        setDadosApi(response.data)
+        //const response = await api.get(`api/crscdr/${setorSelected.value}`);
+        //setDadosApi(response.data)
         setLoading(false)
       } catch (error) {
         console.log('erro: ', error)

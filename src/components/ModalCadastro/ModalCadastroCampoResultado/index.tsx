@@ -26,7 +26,6 @@ export const ModalCadastroCampoResultado = () => {
   const [color, setColor] = useState("#aabbcc");
   const [setores, setSetores] = useState([]);
   const [selectedSetor, setSelectedSetor] = useState(null);
-  const [descricao, setDescricao] = useState(null);
 
   const [isValid, setIsValid] = useState(false);
 

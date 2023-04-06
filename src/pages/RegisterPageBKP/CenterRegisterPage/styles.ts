@@ -21,33 +21,13 @@ export const Container = styled.div<verifyAnimaitonProps>`
   margin: 20px 0px;
   border-radius: 25px;
   overflow-x: auto;
-  z-index: 2;
-
-  a{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-
-    margin-left: 48px;
-    margin-top: 31px;
-    text-decoration: none;
-
-    svg  {
-      font-size: 2rem;
-    }
-  }
-
+  z-index: 1;
   ${props =>
     props.verify === true &&
     css`
-    animation: ${retractCenter} 1s;
-       `
+      animation: ${retractCenter} 1s;
+    `
   }
-
-  h1 {
-    margin: 31px 0 0px 48px;
-  }
-
 
   ::-webkit-scrollbar {
     display: none;
@@ -64,15 +44,4 @@ export const Container = styled.div<verifyAnimaitonProps>`
   }
 
 `;
-
-export const SubHeader = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  height: 65px;
-  margin-left: 48px;
-  width: 100%;
-  margin-top: 16px;
-`;
-
 

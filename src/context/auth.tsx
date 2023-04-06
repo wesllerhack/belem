@@ -8,7 +8,6 @@ import React, {
 } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { api } from '../services/api';
-import { useInContext } from './DataContext';
 
 interface User {
   id: string;
@@ -17,6 +16,7 @@ interface User {
   id_cargo: number;
   permite_cadastrar: number;
   name: string;
+  sobrenome: string;
   email: string;
   avatar_url: string;
 }
@@ -85,7 +85,7 @@ export const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
       setData({ token, user });
 
-      navigate('/dashboard');
+      navigate('/pages');
 
     },
     [],

@@ -20,7 +20,8 @@ export const UserHeader = () => {
       </Notification>
       <Profile>
         <User>
-          <h4>{user.name}</h4>
+
+          <h4>{user.name + ' ' + user.sobrenome}</h4>
           <h5>{cargo}</h5>
           <span>Lider Imediato:&nbsp;<p>{lider}</p></span>
           <span>Setor:&nbsp;<p>{setor}</p></span>

@@ -9,7 +9,7 @@ export function App() {
 
   return (
     <>
-      <Router basename="/dev/crs">
+      <Router>
         <AppProvider>
           <AppRoutes />
           <GlobalStyle />

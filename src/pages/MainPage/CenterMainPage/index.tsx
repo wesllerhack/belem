@@ -6,6 +6,10 @@ import { Container, SubHeader } from './styles';
 import { useEffect } from 'react';
 import { useContext } from 'react';
 import { InContext } from '../../../context/DataContext';
+import { Link } from 'react-router-dom';
+
+import { IoIosArrowBack } from 'react-icons/io'
+
 
 export const CenterMainPage = () => {
   const { verifyAnimation, setVerifyAnimation } = useContext(InContext);
@@ -21,6 +25,7 @@ export const CenterMainPage = () => {
 
   return (
     <Container verify={verifyAnimation}>
+      <Link to="/pages"><IoIosArrowBack />Voltar</Link>
       <h1>Campo de Resultados</h1>
       <SubHeader>
         <SelectPeriodo disabled={false} />
