@@ -10,7 +10,7 @@ export const ChoosePage = () => {
     <ContainerChoice>
       <LeftPage />
       <CenterContainer>
-        <Link to="/dashboard"><div><h2>Painel CRS</h2></div></Link>
+        <Link style={{ cursor: 'default' }} to="#"><div><h2>Painel CRS</h2></div></Link>
         <Link to="/painel"><div><h2>Painel de Vendas</h2></div></Link>
       </CenterContainer>
 

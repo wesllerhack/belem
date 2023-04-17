@@ -5,6 +5,7 @@ import { HexColorPicker } from "react-colorful";
 
 
 import { CadastroOptions, InputContainer, ButtonContainer, Card, CardContent, CardTitle, CardPercentSquare, CardContentBar } from './styles';
+import { ButtonAdicionar } from '../../../../components/ButtonAdicionar';
 export const CardCampoDeResultado = ({ verifyState }: any) => {
   const [color, setColor] = useState("#aabbcc");
   const [descricao, setDescricao] = useState(null);
@@ -52,8 +53,7 @@ export const CardCampoDeResultado = ({ verifyState }: any) => {
         </Card>
 
         <ButtonContainer>
-          <button type='submit'>Salvar</button>
-          <button type='submit'>Cancelar</button>
+          <button style={{ color: '#fff' }} type='submit'>Salvar</button>
         </ButtonContainer>
 
       </form >

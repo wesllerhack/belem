@@ -23,15 +23,30 @@ const showPerfil = keyframes`
 /*background: rgba(230, 230, 230, 0.911); */
 export const Container = styled.div`
   background: #E6e6e6;
-  height: calc(97vh - 20px);
-  width: calc(100vw - 380px);
-
-
+  height: calc(98vh - 20px);
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
   position: relative;
-  margin: 20px 0px;
-  border-radius: 25px;
+  margin: 20px 20px 0px 20px;
+  border-radius: 35px;
   overflow-y: auto;
-  animation: ${expandCenter} 1s;
+  //animation: ${expandCenter} 1s;
+
+
+  div {
+
+    img {
+    display: flex;
+    margin-top: -20px;
+    width: 300px;
+    height: 150px;
+    display: flex;
+
+  }
+  }
+
+
 
   a{
     display: flex;
@@ -45,10 +60,6 @@ export const Container = styled.div`
     svg  {
       font-size: 3rem;
     }
-  }
-
-  h1 {
-    margin: 31px 0px 0px 48px;
   }
 
 
@@ -71,30 +82,51 @@ export const Container = styled.div`
 export const User = styled.div`
   width: 35vw;
   right: 5px;
-  top: 0;
   position: absolute;
   animation: ${showPerfil} 3s;
 `;
 
+export const HeaderContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0px;
+`;
 
+export const TitlePage = styled.h1`
+    display: flex;
+    justify-content: center;
+    color: #25316D;
+    align-items: center;
+    font-size: 4.0rem;
+    width: 100%;
+    position: absolute;
+`;
 
 export const SubHeader = styled.div`
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  height: 65px;
-  margin-left: 48px;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-evenly;
+  height: 170px;
+  margin-left: 0px;
+  margin-right: 25px;
   width: 100%;
-  margin-top: 16px;
+  max-width: 500px;
+
 
   select {
-    width: 280px;
+    width: 250px;
+    background: green;
+
     height: 40px;
     background: transparent;
     border-radius: 12px;
     border: none;
     font-size: 1.5rem;
-    padding-left: 10px;
+    padding-left: 0px;
+    margin-right: 20px;
 
     option {
       font-size: 1.5rem;
@@ -110,14 +142,6 @@ export const SubHeader = styled.div`
     }
 
 
-  }
-
-  span {
-    margin-left: 25px;
-    cursor: pointer;
-    svg {
-      font-size: 2rem;
-    }
   }
 `;
 

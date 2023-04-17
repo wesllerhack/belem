@@ -1,4 +1,4 @@
-import { opacify } from "polished";
+import { opacify, shade } from "polished";
 import styled, { css, keyframes } from "styled-components";
 
 const showCard = keyframes`
@@ -48,6 +48,7 @@ export const CadastroOptions = styled.div<Ppp>`
   box-shadow: 0px 0px 29px -2px rgba(0,0,0,0.36);
 
   h2{
+    color: #25316D;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -128,7 +129,7 @@ display: flex;
       }
     }
 `;
-
+/*
 export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
@@ -145,7 +146,7 @@ export const ButtonContainer = styled.div`
 
 `;
 
-
+*/
 
 export const Card = styled.div`
   width: 100%;
@@ -225,4 +226,28 @@ export const CardContentBar = styled.div`
 }
 `;
 
+export const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 35px;
 
+  button {
+    width: 8rem;
+    padding: 6px 2rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+
+    background: #191b4e;
+    color: yellow;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background: ${shade(0.2, '#25316D')};
+    }
+  }
+
+`;

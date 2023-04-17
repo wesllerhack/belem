@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState } from 'react'
-import logo from '../../assets/logoCrs.png'
+import logo from '../../assets/logo.png'
 import { FiLock, FiUser } from 'react-icons/fi';
 
 import * as Yup from 'yup'
@@ -87,8 +87,7 @@ export const LoginPage = () => {
         </Form>
       </Login>
       <Side>
-        <h3>Seja Bem vindo ao&nbsp;<p>CRS</p>,</h3>
-        <h2>Contrato de Resultado <br /> Setoriais</h2>
+        <h2>Seja Bem vindo ao&nbsp;<p>Belem</p></h2>
       </Side>
 
 

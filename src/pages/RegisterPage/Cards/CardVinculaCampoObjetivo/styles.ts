@@ -40,7 +40,7 @@ export const CadastroOptions = styled.div<Ppp>`
   flex-direction: column;
   background: #fff;
   margin: 25px;
-  padding: 10px 40px;
+  padding: 15px;
   height: 70vh;
   width: 45%;
   display: flex;
@@ -58,7 +58,7 @@ export const CadastroOptions = styled.div<Ppp>`
 
 
   ${props =>
-    props.estado === 2 ? css`
+    props.estado === 5 ? css`
       animation: ${showCard} 1s;
       display: flex;
     `:
@@ -86,8 +86,6 @@ justify-content: space-between;
 gap: 1rem;
 
   div{
-    width: 100%;
-    height: 40px;
     display: flex;
 
     select {
@@ -103,9 +101,14 @@ gap: 1rem;
       }
     }
 
+
     div{
+      width: 100%;
+      height: 30px;
+      display: flex;
       flex-direction: column;
     }
+
 
     label {
       width: 130px;
@@ -120,7 +123,9 @@ gap: 1rem;
       border: 1px solid #ccc;
       border-radius: 8px;
       width: 100%;
+      height: 30px;
       padding-left: 10px;
+      margin-right: 25px;
 
       :focus {
         border: 1px solid #000;

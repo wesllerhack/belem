@@ -41,7 +41,7 @@ export const CadastroOptions = styled.div<Ppp>`
   background: #fff;
   margin: 25px;
   padding: 10px 40px;
-  height: 70vh;
+  height: 70%;
   width: 45%;
   display: flex;
 
@@ -58,7 +58,7 @@ export const CadastroOptions = styled.div<Ppp>`
 
 
   ${props =>
-    props.estado === 2 ? css`
+    props.estado === 4 ? css`
       animation: ${showCard} 1s;
       display: flex;
     `:
@@ -85,12 +85,15 @@ flex-direction: column;
 justify-content: space-between;
 gap: 1rem;
 
-  div{
-    width: 100%;
-    height: 40px;
-    display: flex;
 
-    select {
+`;
+
+export const SingleInputContainer = styled.div`
+  width: 100%;
+  height: 40px;
+  display: flex;
+
+  select {
       width: 100%;
       border-radius: 8px;
 
@@ -111,7 +114,7 @@ gap: 1rem;
       width: 130px;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
       margin-right: 25px;
       margin-left: 10px;
 
@@ -126,23 +129,40 @@ gap: 1rem;
         border: 1px solid #000;
       }
     }
-  }
-
 
 `;
 
-export const SelectModal = styled(Select)`
+export const DataInputContainer = styled.div`
+  width: 100%;
+  height: 40px;
   display: flex;
-  height: 150px;
-  padding-top: 15px;
 
+
+  label {
+      width: 130px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-right: 25px;
+      margin-left: 10px;
+    }
+    input {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      width: 100%;
+      padding-left: 10px;
+
+      :focus {
+        border: 1px solid #000;
+      }
+    }
 `;
 
 export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  margin-bottom: 35px;
+  margin: 50px 0px 35px;
 
   button {
     width: 8rem;

@@ -29,7 +29,7 @@ export const SetorSelector = () => {
 
   const setoresOptions = setores.map((setor: any) => ({
     value: setor?.id,
-    label: setor?.descricao
+    label: setor?.setor
   }))
 
   return (

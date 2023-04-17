@@ -17,9 +17,10 @@ const showPecent = keyframes`
 
 export const Container = styled.div`
   display: flex;
-  align-items: space-between;
+  align-items: center;
   justify-content: space-evenly;
   margin-bottom: 150px;
+  height: 100%;
   width: 100%;
   animation: ${showPecent} 2s;
 
@@ -29,28 +30,11 @@ export const Container = styled.div`
     height: 80px;
     align-items: center;
     justify-content: center;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
     font-size: 2rem;
   }
-  span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    top: 60%;
-    font-size: 1.35rem;
-  }
 `;
-/**
- * span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    top: 60%;
-    font-size: 1.25rem;
-  }
- */
+
 export const LoadingResults = styled.div`
   width: 100%;
   display: flex;

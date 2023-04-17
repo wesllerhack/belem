@@ -9,7 +9,7 @@ export function App() {
 
   return (
     <>
-      <Router>
+      <Router basename="/belem" >
         <AppProvider>
           <AppRoutes />
           <GlobalStyle />

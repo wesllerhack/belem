@@ -9,7 +9,7 @@ export const Loading = () => {
     <LoadingContainer>
       <img src={logo} alt="" />
       <div>
-        <ReactLoading type="spin" color="#25316D" height={100} width={100} />
+        <ReactLoading delay={5000} type="spin" color="#25316D" height={100} width={100} />
         <span> Estamos preparando tudo para você, aguarde alguns instantes.</span>
       </div>
     </LoadingContainer>

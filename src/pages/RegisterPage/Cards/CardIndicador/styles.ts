@@ -58,7 +58,7 @@ export const CadastroOptions = styled.div<Ppp>`
 
 
   ${props =>
-    props.estado === 2 ? css`
+    props.estado === 3 ? css`
       animation: ${showCard} 1s;
       display: flex;
     `:

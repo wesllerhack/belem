@@ -5,7 +5,7 @@ import { api } from '../../../../services/api';
 
 
 import { CadastroOptions, InputContainer, ButtonContainer } from './styles';
-export const CardObjetivoEstrategico = ({ verifyState }: any) => {
+export const CardIndicador = ({ verifyState }: any) => {
   const [options, setOptions] = useState([]);
   const [selectedOption, setSelectedOption] = useState("");
 
@@ -26,14 +26,24 @@ export const CardObjetivoEstrategico = ({ verifyState }: any) => {
     setSelectedOption(event.target.value);
   }
 
-
   return (
     <CadastroOptions estado={verifyState}>
-      <h2>Cadastro de Objetivo Estratégico</h2>
+      <h2>Cadastro de Indicador</h2>
       <form action="">
         <InputContainer>
           <div>
-            <label htmlFor="">Campo de resultado</label>
+            <label htmlFor="">Setor</label>
+            <select value={selectedOption} onChange={handleSelectChange}>
+              <option value=""></option>
+              {campodeResultadoOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label htmlFor="">Objetivo Estratégico</label>
             <select value={selectedOption} onChange={handleSelectChange}>
               <option value=""></option>
               {campodeResultadoOptions.map((option) => (

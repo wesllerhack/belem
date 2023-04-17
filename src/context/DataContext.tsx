@@ -24,6 +24,9 @@ interface InContextData {
   loading: Boolean;
   permiteCadastro: Boolean;
   permiteSelecionarSetores: Boolean;
+  selectedEmpresa: number | undefined | null;
+  empresas: EmpresaProps[];
+  visualizaValor: Boolean;
 
   setSelectedDate: any;
   setObjetivo: any;
@@ -35,12 +38,22 @@ interface InContextData {
   setDigitado: any;
   setSetorSelected: any;
   setVerifyAnimation: any;
+  loadingPainel: any;
+  setLoadingPainel: any;
 
   handleData: (objetivo: ObjetivoEstrategicoProps[], indicador: IndicadorProps[], dadosIndicador: DadosIndicadorProps) => void
+  handleSelectedEmpresa: (recebeEmpresa: number) => void
   handleReset: () => void
   handleLoading: () => void
   disableLoading: () => void
+  handleVisualizaValor: (event: any) => void
 
+}
+
+interface EmpresaProps {
+  nroempresa: number;
+  nomereduzido: string;
+  status: string;
 }
 
 
@@ -109,6 +122,11 @@ export const DataContext: React.FC<PropsWithChildren> = ({ children }) => {
   const [indicador, setIndicador] = useState<IndicadorProps[]>([]);
   const [dadosIndicador, setDadosIndicador] = useState<DadosIndicadorProps>({} as DadosIndicadorProps);
   const [loading, setLoading] = useState(false);
+
+  const [loadingPainel, setLoadingPainel] = useState(false);
+  const [visualizaValor, setVisualizaValor] = useState(false);
+
+
   const [permiteCadastro, setPermiteCadastro] = useState(false);
   const [permiteSelecionarSetores, setPermiteSelecionarSetores] = useState(false);
 
@@ -124,6 +142,20 @@ export const DataContext: React.FC<PropsWithChildren> = ({ children }) => {
   const [isSelected, setIsSelected] = useState(1);
 
   const [verifyAnimation, setVerifyAnimation] = useState(false);
+
+  const [empresas, setEmpresas] = useState<EmpresaProps[]>([]);
+  const [selectedEmpresa, setSelectedEmpresa] = useState(0);
+
+  const handleSelectedEmpresa = useCallback((recebeEmpresa: any) => {
+    setSelectedEmpresa(recebeEmpresa)
+  }, [selectedEmpresa])
+
+  const handleVisualizaValor = (event: any) => {
+    event.preventDefault();
+    setVisualizaValor(state => !state)
+  }
+
+
 
   const handleLoading = useCallback(() => {
     setLoading(true);
@@ -153,7 +185,7 @@ export const DataContext: React.FC<PropsWithChildren> = ({ children }) => {
   }, [location.pathname])
 
   useEffect(() => {
-    setLoading(true)
+    //setLoading(true)
     async function loadCardSetor() {
       try {
         //const response = await api.get(`api/crscdr/${setorSelected.value}`);
@@ -164,7 +196,7 @@ export const DataContext: React.FC<PropsWithChildren> = ({ children }) => {
       }
     }
     if (!!setorSelected) {
-      loadCardSetor()
+      // loadCardSetor()
     }
 
   }, [setorSelected])
@@ -233,18 +265,38 @@ export const DataContext: React.FC<PropsWithChildren> = ({ children }) => {
 
   useEffect(() => {
     if (!!user) {
-      if (!(user.permite_cadastrar == 1)) {
+      if (!(user.is_admin == 1)) {
         setPermiteCadastro(true)
       } else {
         setPermiteCadastro(false)
       }
-      if (!(user.permite_cadastrar == 1)) {
+      if (!(user.is_admin == 1)) {
         setPermiteSelecionarSetores(true)
       } else {
         setPermiteSelecionarSetores(false)
       }
+      setSelectedEmpresa(user.id_filial)
     }
 
+  }, [user])
+
+
+  useEffect(() => {
+    if (user) {
+      setLoading(true)
+      const pegaEmpresas = async () => {
+        try {
+
+          const response = await api.get(`api/painel/empresa`);
+          setEmpresas(response.data);
+
+          setLoading(false)
+        } catch (error) {
+          console.log('erro: ', error)
+        }
+      }
+      pegaEmpresas()
+    }
   }, [user])
 
 
@@ -280,7 +332,15 @@ export const DataContext: React.FC<PropsWithChildren> = ({ children }) => {
         handleLoading,
         disableLoading,
         permiteCadastro,
-        permiteSelecionarSetores
+        permiteSelecionarSetores,
+        handleSelectedEmpresa,
+        selectedEmpresa,
+        empresas,
+        visualizaValor,
+        handleVisualizaValor,
+
+        loadingPainel,
+        setLoadingPainel,
       }}
     >
       {children}

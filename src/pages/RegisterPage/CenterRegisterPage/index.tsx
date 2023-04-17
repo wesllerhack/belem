@@ -16,6 +16,9 @@ import { Container, CenterContainer, CadastroOptions, User, Line } from './style
 import { RegisterFormCard } from '../RegisterFormCard';
 import { CardCampoDeResultado } from '../Cards/CardCampoDeResultado';
 import { CardObjetivoEstrategico } from '../Cards/CardObjetivoEstrategico';
+import { CardIndicador } from '../Cards/CardIndicador';
+import { CardDadosIndicador } from '../Cards/CardDadosDosIndicadores';
+import { CardVinculaCampoObjetivo } from '../Cards/CardVinculaCampoObjetivo';
 
 export const CenterRegisterPage = () => {
   const { verifyAnimation, setVerifyAnimation } = useContext(InContext);
@@ -33,7 +36,7 @@ export const CenterRegisterPage = () => {
   */
 
 
-  const showCardForm1 = useCallback((num: number) => {
+  const showCardForm = useCallback((num: number) => {
 
     setVerifyState(num)
 
@@ -55,18 +58,19 @@ export const CenterRegisterPage = () => {
       <CenterContainer>
         <CadastroOptions>
           <ul>
-            <li onClick={() => showCardForm1(1)}><Link to=""><BsClipboardData />Campo de Resultado</Link></li>
-            <li onClick={() => showCardForm1(2)}><Link to=""><BsClipboardData />Objetivo Estratégico</Link></li>
-            <li><Link to=""><BsClipboardData />Indicadores</Link></li>
-            <li><Link to=""><MdStorage />Dados do Indicador</Link></li>
-            <li><Link to=""><VscDebugDisconnect />Vinculo de Campo de Resultado ao Objetivo Estratégico</Link></li>
-            <li><Link to=""><VscDebugDisconnect />Vinculo de Objetivo Estratégico ao Indicador</Link></li>
+            <li onClick={() => showCardForm(1)}><Link to=""><BsClipboardData />Campo de Resultado</Link></li>
+            <li onClick={() => showCardForm(2)}><Link to=""><BsClipboardData />Objetivo Estratégico</Link></li>
+            <li onClick={() => showCardForm(3)}><Link to=""><BsClipboardData />Indicadores</Link></li>
+            <li onClick={() => showCardForm(4)}><Link to=""><MdStorage />Dados do Indicador</Link></li>
           </ul>
         </CadastroOptions >
 
         {
           !!(pagina === 1) && <><CardCampoDeResultado verifyState={verifyState} /></> ||
           !!(pagina === 2) && <CardObjetivoEstrategico verifyState={verifyState} /> ||
+          !!(pagina === 3) && <CardIndicador verifyState={verifyState} /> ||
+          !!(pagina === 4) && <CardDadosIndicador verifyState={verifyState} /> ||
+          !!(pagina === 5) && <CardVinculaCampoObjetivo verifyState={verifyState} /> ||
           <></>
         }
 

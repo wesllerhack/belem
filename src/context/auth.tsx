@@ -14,7 +14,10 @@ interface User {
   id_setor: number;
   id_lider_imediato: number;
   id_cargo: number;
-  permite_cadastrar: number;
+  is_admin: number;
+  id_empresa: number;
+  id_filial: number;
+  id_nivel_permissao: number;
   name: string;
   sobrenome: string;
   email: string;
@@ -85,7 +88,13 @@ export const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
       setData({ token, user });
 
-      navigate('/pages');
+      console.log(user.id_nivel_permissao)
+      if (user.id_nivel_permissao === 6) {
+        navigate('/painel');
+      } else {
+        navigate('/pages');
+      }
+
 
     },
     [],

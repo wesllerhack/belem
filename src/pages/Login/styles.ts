@@ -30,8 +30,11 @@ export const Side = styled.div`
 
   h2 {
     text-align: center;
-    color: #3c3e7f;
+    //color: #3c3e7f;
     font-size: 3.7rem;
+    p {
+      color: #3c3e7f;
+    }
   }
 
 
