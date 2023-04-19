@@ -22,13 +22,13 @@ export const OptionsLeftSide = () => {
       <ul>
         <li  >
           <Link to="/painel" onClick={() => setIsSelected(1)} ><MdOutlineDashboardCustomize /><span>Painel</span></Link>
-        </li>{/*
-        <li style={{ pointerEvents: "none", cursor: 'default' }}  >
-          <Link style={{ pointerEvents: "none", cursor: 'default' }} to="/painel/gerador" onClick={() => setIsSelected(2)}>< MdOutlinePlaylistAdd /><span>Cadastro de metas</span></Link>
         </li>
-        <li style={{ pointerEvents: "none", cursor: 'default' }} >
-          <Link style={{ pointerEvents: "none", cursor: 'default' }} to="/painel/cadastro" onClick={() => setIsSelected(3)}><VscGraph /><span>Gerador de metas</span></Link>
+        <li  >
+          <Link to="/painel/cadastro" onClick={() => setIsSelected(2)}>< MdOutlinePlaylistAdd /><span>Cadastro de metas</span></Link>
         </li>
+        <li >
+          <Link to="/painel/diarizacao" onClick={() => setIsSelected(3)}><VscGraph /><span>Relatório de diarização</span></Link>
+        </li>{/*}
          <li >
           <Link to="/perfil" onClick={() => setIsSelected(4)}><FaUserEdit /><span>Perfil</span></Link>
   </li>*/}

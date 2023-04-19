@@ -12,13 +12,14 @@ import { VscDebugDisconnect } from 'react-icons/vsc';
 
 
 
-import { Container, CenterContainer, CadastroOptions, User, Line } from './styles';
+import { Container, HeaderTitle, CenterContainer, CadastroOptions, User, Line } from './styles';
 import { RegisterFormCard } from '../RegisterFormCard';
 import { CardCampoDeResultado } from '../Cards/CardCampoDeResultado';
 import { CardObjetivoEstrategico } from '../Cards/CardObjetivoEstrategico';
 import { CardIndicador } from '../Cards/CardIndicador';
 import { CardDadosIndicador } from '../Cards/CardDadosDosIndicadores';
 import { CardVinculaCampoObjetivo } from '../Cards/CardVinculaCampoObjetivo';
+import { IoIosArrowBack } from 'react-icons/io';
 
 export const CenterRegisterPage = () => {
   const { verifyAnimation, setVerifyAnimation } = useContext(InContext);
@@ -49,7 +50,10 @@ export const CenterRegisterPage = () => {
 
   return (
     <Container >
-      <h1>Cadastro</h1>
+      <HeaderTitle>
+        <Link to="/pages"><IoIosArrowBack />Voltar</Link>
+        <h1>Cadastro</h1>
+      </HeaderTitle>
       <User>
         <UserHeader />
       </User>

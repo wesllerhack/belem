@@ -17,6 +17,9 @@ import { ChoosePage } from "./ChoosePage";
 import { useAuth } from "../context/auth";
 import { SellingPageTV } from "./SellingPageTV";
 
+import { RegisterPageGoal } from './SellingPage/RegisterPageGoal/'
+import { ReportDiarization } from "./SellingPage/ReportDiarization";
+
 export const AppRoutes = () => {
   const { user } = useAuth();
   const { loading } = useInContext();
@@ -26,9 +29,9 @@ export const AppRoutes = () => {
     return <><Loading /></>
   }
 
-  if (user) {
-    console.log(user.id_nivel_permissao !== 6)
-  }
+  // if (user) {
+  //   console.log(user.id_nivel_permissao !== 6)
+  // }
 
 
   return (
@@ -42,6 +45,8 @@ export const AppRoutes = () => {
 
             (<>
               <Route path="/painel" element={<SellingPage />} />
+              <Route path="/painel/cadastro" element={<RegisterPageGoal />} />
+              <Route path="/painel/diarizacao" element={<ReportDiarization />} />
               <Route path="/pages" element={<ChoosePage />} />
               <Route path="/dashboard" element={<MainPage />} />
               <Route path="/cadastro" element={<RegisterPage />} />

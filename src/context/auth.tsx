@@ -88,7 +88,6 @@ export const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
       setData({ token, user });
 
-      console.log(user.id_nivel_permissao)
       if (user.id_nivel_permissao === 6) {
         navigate('/painel');
       } else {
@@ -101,7 +100,6 @@ export const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
   );
 
   useEffect(() => {
-    console.log(location.pathname)
     if (!data.user || !data.token) {
       navigate('/');
     }

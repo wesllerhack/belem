@@ -1,18 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react'
 
-import { SelectPeriodo } from '../../../components/SelectPeriodo';
-import { VendaMeta } from '../components/PercentuaisVenda';
+import { SelectPeriodo } from '../../../../components/SelectPeriodo';
+import { VendaMeta } from '../../components/PercentuaisVenda';
 import { Container, Header, User, HeaderTitle, SubHeader, Line } from './styles';
-import { InContext } from '../../../context/DataContext';
+import { InContext } from '../../../../context/DataContext';
 import { Link } from 'react-router-dom';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 
 
 import { IoIosArrowBack } from 'react-icons/io'
-import { useAuth } from '../../../context/auth';
-import { UserHeader } from '../../../components/UserHeader';
+import { useAuth } from '../../../../context/auth';
+import { UserHeader } from '../../../../components/UserHeader';
+import { TableDiarization } from './TableDiarization';
 
-export const CenterMainPage = () => {
+export const CenterReportPage = () => {
   const { user } = useAuth();
   const { verifyAnimation, setVerifyAnimation, empresas, handleSelectedEmpresa, selectedEmpresa, handleVisualizaValor, visualizaValor, setLoadingPainel } = useContext(InContext);
 
@@ -47,11 +48,11 @@ export const CenterMainPage = () => {
       <Header>
         <HeaderTitle>
           <Link to="/pages"><IoIosArrowBack />Voltar</Link>
-          <h1>Painel de vendas</h1>
+          <h1>Diarização</h1>
         </HeaderTitle>
 
         <SubHeader>
-          <SelectPeriodo disabled={true} />
+          <SelectPeriodo disabled={false} />
           <div >
             <select disabled={desabilitaSelect} placeholder='' value={Number(selectedEmpresa)} onChange={handleSelectChange}>
               <option value="0">Selecione a empresa</option>
@@ -62,10 +63,6 @@ export const CenterMainPage = () => {
               ))}
             </select>
           </div>
-          {user.id_nivel_permissao <= 2 &&
-            < span title='Clique para visualizar/esconder os valores' onClick={handleVisualizaValor}>
-              {!visualizaValor ? <FiEye /> : <FiEyeOff />}
-            </span>}
         </SubHeader>
       </Header>
       <User>
@@ -74,7 +71,8 @@ export const CenterMainPage = () => {
       </User>
       <Line />
 
-      <VendaMeta />
+      <TableDiarization />
+
     </Container >
   );
 };

@@ -118,6 +118,7 @@ export const DataContext: React.FC<PropsWithChildren> = ({ children }) => {
   var date = new Date();
   var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
 
+
   const [objetivo, setObjetivo] = useState<ObjetivoEstrategicoProps[]>([]);
   const [indicador, setIndicador] = useState<IndicadorProps[]>([]);
   const [dadosIndicador, setDadosIndicador] = useState<DadosIndicadorProps>({} as DadosIndicadorProps);

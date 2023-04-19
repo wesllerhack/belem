@@ -98,6 +98,29 @@ export const CadastroOptions = styled.div`
   }
 `
 
+export const HeaderTitle = styled.div`
+    display: flex;
+
+    a{
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      margin-left: 28px;
+      margin-top: 31px;
+      text-decoration: none;
+
+      svg  {
+        font-size: 2rem;
+      }
+    }
+
+  h1 {
+    margin: 31px 0px 0px 48px;
+  }
+
+`;
+
 export const User = styled.div`
   width: 35vw;
   right: 5px;
