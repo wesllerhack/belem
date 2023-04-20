@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 
 import { VscGraph } from 'react-icons/vsc'
 import { MdOutlinePlaylistAdd, MdOutlineDashboardCustomize } from 'react-icons/md'
-import { FaUserEdit } from 'react-icons/fa'
 
 import { Container } from './styles';
 import { InContext } from '../../../../context/DataContext'
+import { useAuth } from '../../../../context/auth'
 
 interface OptionsProps {
   isSelected: Number;
@@ -14,6 +14,7 @@ interface OptionsProps {
 }
 
 export const OptionsLeftSide = () => {
+  const { user } = useAuth()
   const { isSelected, setIsSelected } = useContext(InContext);
 
 
@@ -23,15 +24,22 @@ export const OptionsLeftSide = () => {
         <li  >
           <Link to="/painel" onClick={() => setIsSelected(1)} ><MdOutlineDashboardCustomize /><span>Painel</span></Link>
         </li>
-        <li  >
-          <Link to="/painel/cadastro" onClick={() => setIsSelected(2)}>< MdOutlinePlaylistAdd /><span>Cadastro de metas</span></Link>
-        </li>
-        <li >
-          <Link to="/painel/diarizacao" onClick={() => setIsSelected(3)}><VscGraph /><span>Relatório de diarização</span></Link>
-        </li>{/*}
-         <li >
-          <Link to="/perfil" onClick={() => setIsSelected(4)}><FaUserEdit /><span>Perfil</span></Link>
-  </li>*/}
+        {
+          !!user &&
+            !!(user.id_nivel_permissao <= 2) ?
+            (<>
+              <li  >
+                <Link to="/painel/cadastro" onClick={() => setIsSelected(2)}>< MdOutlinePlaylistAdd /><span>Cadastro de metas</span></Link>
+              </li>
+              <li >
+                <Link to="/painel/diarizacao" onClick={() => setIsSelected(3)}><VscGraph /><span>Relatório de diarização</span></Link>
+              </li>
+            </>) :
+            <li >
+              <Link to="/painel/diarizacao" onClick={() => setIsSelected(2)}><VscGraph /><span>Relatório de diarização</span></Link>
+            </li>
+        }
+
       </ul>
     </Container>
   )

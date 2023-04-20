@@ -53,14 +53,29 @@ export const CenterMainPage = () => {
         <SubHeader>
           <SelectPeriodo disabled={true} />
           <div >
-            <select disabled={desabilitaSelect} placeholder='' value={Number(selectedEmpresa)} onChange={handleSelectChange}>
-              <option value="0">Selecione a empresa</option>
-              {empresas.map((option) => (
-                <option key={option.nroempresa} value={option.nroempresa}>
-                  {option.nomereduzido}
-                </option>
-              ))}
-            </select>
+            {!!user &&
+              !!(user.id_nivel_permissao <= 3) ?
+              (<select disabled={desabilitaSelect} placeholder='' value={Number(selectedEmpresa)} onChange={handleSelectChange}>
+                <option value="0">Selecione a empresa</option>
+                {empresas.map((option) => (
+                  <option key={option.nroempresa} value={option.nroempresa}>
+                    {option.nomereduzido}
+                  </option>
+                ))}
+              </select>) :
+              (<select
+                style={{ cursor: 'disabled', pointerEvents: 'none' }}
+                disabled={true}
+                value={Number(selectedEmpresa)}
+                onChange={handleSelectChange}>
+                <option value="0">Selecione a empresa</option>
+                {empresas.map((option) => (
+                  <option key={option.nroempresa} value={option.nroempresa}>
+                    {option.nomereduzido}
+                  </option>
+                ))}
+              </select>)
+            }
           </div>
           {user.id_nivel_permissao <= 2 &&
             < span title='Clique para visualizar/esconder os valores' onClick={handleVisualizaValor}>

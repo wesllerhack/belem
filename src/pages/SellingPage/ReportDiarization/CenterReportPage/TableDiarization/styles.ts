@@ -16,15 +16,14 @@ const showTable = keyframes`
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-
+  margin-bottom: 25px;
 
 `;
 
 export const ContainerButton = styled.div`
   border-radius: 12px;
   border: none
-  margin-bottom: 50px;
-  margin-left: 20px;
+  margin-bottom: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,7 +74,6 @@ export const ContainerTable = styled.div`
 
     th,
     td {
-      margin: 0;
       padding: 0.5rem;
       border-bottom: 1px solid black;
       border-right: 1px solid black;
@@ -83,6 +81,9 @@ export const ContainerTable = styled.div`
       :last-child {
         border-right: 0;
       }
+    }
+    td {
+
     }
     tr {
       :nth-child(even) {

@@ -1,18 +1,18 @@
 import React, { useContext, useEffect } from 'react'
 
 
-import { CenterRegisterPageGoal } from './CenterRegisterPageGoal'
-import { LeftMainPage } from '../LeftMainPage'
+import { CenterRegisterUserPage } from './CenterRegisterUserPage'
+import { LeftPage } from '../LeftMainPage'
 
 import { Container } from './styles'
 import { InContext } from '../../../context/DataContext'
-export const RegisterPageGoal = () => {
+export const RegisterUserPage = () => {
   const { setIsSelected } = useContext(InContext);
   setIsSelected(2)
   return (
     <Container>
-      <LeftMainPage />
-      <CenterRegisterPageGoal />
+      <LeftPage />
+      <CenterRegisterUserPage />
     </Container>
   )
 }

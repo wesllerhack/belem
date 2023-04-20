@@ -92,56 +92,59 @@ export const TableDiarization = () => {
     const mes = date[1];
     const ano = date[0]
     window.open(`http://192.168.2.70/sistemas/email/rel_metas_mes_mod.php?mes=${mes}&ano=${ano}`, '_blank');
+    alert('Verifique seu email, ou contate o administrador caso não tenha recebido.');
   };
 
   return (
     <Container>
-      <ContainerTable>
-        {!!diarizacao && !!vendas ?
-          !loadingTable ?
-            <table>
-              <thead>
-                <tr>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th>VENDA HIST.</th>
-                  <th>PART.%</th>
-                  <th>VENDA PLANO	</th>
-                  <th>PART.%</th>
-                </tr>
-                <tr>
-                  {/*<th>Setor</th>*/}
-                  <th>DATA HISTORICO</th>
-                  <th>DIA SEMANA</th>
-                  <th>DATA ATUAL</th>
-                  <th>{Number(vendas?.total).toLocaleString(`pt-br`, { style: `currency`, currency: `BRL` })}</th>
-                  <th>{100}%</th>
-                  <th>{Number(vendas?.venda_meta).toLocaleString(`pt-br`, { style: `currency`, currency: `BRL` })}</th>
-                  <th>100%</th>
-                </tr>
-              </thead>
-              <tbody>
-                {diarizacao?.map((diariaza: DiarizacaoProps) => (
+      {!!diarizacao && !!vendas ?
+        <>
+          <ContainerTable>
+            {!loadingTable ?
+              <table>
+                <thead>
                   <tr>
-                    <td>{diariaza.data_venda}</td>
-                    <td>{diariaza.dia_da_semana}</td>
-                    <td>{diariaza.data_venda_meta}</td>
-                    <td>{Number(diariaza.meta_venda).toLocaleString(`pt-br`, { style: `currency`, currency: `BRL` })}</td>
-                    <td>{diariaza.percentual} %</td>
-                    <td>{Number(diariaza.valor_venda).toLocaleString(`pt-br`, { style: `currency`, currency: `BRL` })}</td>
-                    <td>{diariaza.percentual} %</td>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>VENDA HIST.</th>
+                    <th>PART.%</th>
+                    <th>VENDA PLANO	</th>
+                    <th>PART.%</th>
                   </tr>
-                ))
-                }
+                  <tr>
+                    {/*<th>Setor</th>*/}
+                    <th>DATA HISTORICO</th>
+                    <th>DIA SEMANA</th>
+                    <th>DATA ATUAL</th>
+                    <th style={{ background: '#ffcc29', color: '#000' }}>{Number(vendas?.total).toLocaleString(`pt-br`, { style: `currency`, currency: `BRL` })}</th>
+                    <th style={{ background: '#ffcc29', color: '#000' }}>{100}%</th>
+                    <th style={{ background: '#ffcc29', color: '#000' }}>{Number(vendas?.venda_meta).toLocaleString(`pt-br`, { style: `currency`, currency: `BRL` })}</th>
+                    <th style={{ background: '#ffcc29', color: '#000' }}>100%</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {diarizacao?.map((diariaza: DiarizacaoProps) => (
+                    <tr key={diariaza.data_venda_meta}>
+                      <td>{diariaza.data_venda}</td>
+                      <td>{diariaza.dia_da_semana}</td>
+                      <td>{diariaza.data_venda_meta}</td>
+                      <td>{Number(diariaza.meta_venda).toLocaleString(`pt-br`, { style: `currency`, currency: `BRL` })}</td>
+                      <td>{diariaza.percentual} %</td>
+                      <td>{Number(diariaza.valor_venda).toLocaleString(`pt-br`, { style: `currency`, currency: `BRL` })}</td>
+                      <td>{diariaza.percentual} %</td>
+                    </tr>
+                  ))
+                  }
 
-              </tbody>
-            </table > : <div style={{ color: '#fff' }}>Carregando diarização....</div> : <div style={{ color: '#fff' }}>Nenhum informação encontrada</div>}
-      </ContainerTable>
-      <ContainerButton>
-        <button disabled={!!loadingTable} onClick={() => exportToExcel(diarizacao, 'dados')}>Exportar para Excel</button>
-        <button disabled={!!loadingTable} style={{ background: '#087cc4' }} onClick={() => { openLink() }}>Enviar via Email</button>
-      </ContainerButton>
+                </tbody>
+              </table > : <div style={{ color: '#fff' }}>Carregando diarização....</div>}
+          </ContainerTable>
+          <ContainerButton>
+            <button disabled={!!loadingTable} onClick={() => exportToExcel(diarizacao, 'dados')}>Exportar para Excel</button>
+            <button disabled={!!loadingTable} style={{ background: '#087cc4' }} onClick={() => { openLink() }}>Enviar via Email</button>
+          </ContainerButton>
+        </> : <div style={{ color: '#000', paddingLeft: '50px' }}>Nenhum informação encontrada</div>}
 
     </Container >
   )

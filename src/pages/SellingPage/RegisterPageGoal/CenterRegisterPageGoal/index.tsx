@@ -89,7 +89,7 @@ export const CenterRegisterPageGoal = () => {
       const pegaEmpresas = async () => {
         try {
 
-          const response = await api.get(`api/painel/empresa`);
+          const response = await api.get(`api/painel/filiais`);
           setSelecionaEmpresaMeta(response.data);
 
           const responseMetas = await api.get(`api/painel/listaMetas`);

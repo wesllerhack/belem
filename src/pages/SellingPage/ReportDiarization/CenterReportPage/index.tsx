@@ -20,6 +20,8 @@ export const CenterReportPage = () => {
 
   const [desabilitaSelect, setDesabilitaSelect] = useState(false)
 
+
+
   function handleSelectChange(event: any) {
     setDesabilitaSelect(true)
     const as = parseInt(event.target.value)
@@ -54,14 +56,30 @@ export const CenterReportPage = () => {
         <SubHeader>
           <SelectPeriodo disabled={false} />
           <div >
-            <select disabled={desabilitaSelect} placeholder='' value={Number(selectedEmpresa)} onChange={handleSelectChange}>
-              <option value="0">Selecione a empresa</option>
-              {empresas.map((option) => (
-                <option key={option.nroempresa} value={option.nroempresa}>
-                  {option.nomereduzido}
-                </option>
-              ))}
-            </select>
+            {!!user &&
+              !!(user.id_nivel_permissao <= 3) ?
+              (<select disabled={desabilitaSelect} placeholder='' value={Number(selectedEmpresa)} onChange={handleSelectChange}>
+                <option value="0">Selecione a empresa</option>
+                {empresas.map((option) => (
+                  <option key={option.nroempresa} value={option.nroempresa}>
+                    {option.nomereduzido}
+                  </option>
+                ))}
+              </select>) :
+              (<select
+                style={{ cursor: 'disabled', pointerEvents: 'none' }}
+                disabled={true}
+                value={Number(selectedEmpresa)}
+                onChange={handleSelectChange}>
+                <option value="0">Selecione a empresa</option>
+                {empresas.map((option) => (
+                  <option key={option.nroempresa} value={option.nroempresa}>
+                    {option.nomereduzido}
+                  </option>
+                ))}
+              </select>)
+            }
+
           </div>
         </SubHeader>
       </Header>

@@ -19,6 +19,7 @@ import { SellingPageTV } from "./SellingPageTV";
 
 import { RegisterPageGoal } from './SellingPage/RegisterPageGoal/'
 import { ReportDiarization } from "./SellingPage/ReportDiarization";
+import { RegisterUserPage } from "./ChoosePage/RegisterUser";
 
 export const AppRoutes = () => {
   const { user } = useAuth();
@@ -43,14 +44,26 @@ export const AppRoutes = () => {
             !!(user.id_nivel_permissao === 6) ?
             (<Route path="/painel" element={<SellingPageTV />} />) :
 
-            (<>
-              <Route path="/painel" element={<SellingPage />} />
-              <Route path="/painel/cadastro" element={<RegisterPageGoal />} />
-              <Route path="/painel/diarizacao" element={<ReportDiarization />} />
-              <Route path="/pages" element={<ChoosePage />} />
-              <Route path="/dashboard" element={<MainPage />} />
-              <Route path="/cadastro" element={<RegisterPage />} />
-              <Route path="/consolidado" element={<ConsolidatedPage />} /></>)
+            (
+              <>
+                <Route path="/painel" element={<SellingPage />} />
+                <Route path="/painel/cadastro" element={<RegisterPageGoal />} />
+                <Route path="/painel/diarizacao" element={<ReportDiarization />} />
+                <Route path="/pages" element={<ChoosePage />} />
+                <Route path="/dashboard" element={<MainPage />} />
+                {
+                  !!user &&
+                  !!(user.id_nivel_permissao <= 2) &&
+                  (<Route path="/painel/cadastro" element={<RegisterUserPage />} />)
+                }
+                <Route path="/consolidado" element={<ConsolidatedPage />} />
+                {
+                  !!user &&
+                  !!(user.id_nivel_permissao === 1) &&
+                  (<Route path="/cadastro/usuario" element={<RegisterUserPage />} />)
+                }
+              </>
+            )
         }
       </Routes>
     </>

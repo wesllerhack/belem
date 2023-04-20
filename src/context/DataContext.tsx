@@ -288,7 +288,7 @@ export const DataContext: React.FC<PropsWithChildren> = ({ children }) => {
       const pegaEmpresas = async () => {
         try {
 
-          const response = await api.get(`api/painel/empresa`);
+          const response = await api.get(`api/painel/filiais`);
           setEmpresas(response.data);
 
           setLoading(false)

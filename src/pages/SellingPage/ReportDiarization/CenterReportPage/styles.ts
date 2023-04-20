@@ -141,7 +141,7 @@ export const SubHeader = styled.div`
 export const Line = styled.div`
   width: 100vw;
   border-bottom: 2px solid #ccc;
-  margin-bottom: 40px;
+  margin-bottom: 25px;
 `;
 
 

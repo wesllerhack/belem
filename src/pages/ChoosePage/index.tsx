@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png'
+import { InContext } from '../../context/DataContext';
 import { LeftPage } from './LeftMainPage';
 import { ContainerChoice, CenterContainer } from './styles';
 
 
 export const ChoosePage = () => {
+  const { setIsSelected } = useContext(InContext);
+  useEffect(() => {
+    setIsSelected(1)
+  }, [])
+
   return (
     <ContainerChoice>
       <LeftPage />
