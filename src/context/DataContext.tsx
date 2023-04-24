@@ -43,6 +43,7 @@ interface InContextData {
 
   handleData: (objetivo: ObjetivoEstrategicoProps[], indicador: IndicadorProps[], dadosIndicador: DadosIndicadorProps) => void
   handleSelectedEmpresa: (recebeEmpresa: number) => void
+  handleActualDate: () => void
   handleReset: () => void
   handleLoading: () => void
   disableLoading: () => void
@@ -155,6 +156,10 @@ export const DataContext: React.FC<PropsWithChildren> = ({ children }) => {
     event.preventDefault();
     setVisualizaValor(state => !state)
   }
+
+  const handleActualDate = useCallback(() => {
+    setSelectedDate(firstDay)
+  }, [])
 
 
 
@@ -339,6 +344,7 @@ export const DataContext: React.FC<PropsWithChildren> = ({ children }) => {
         empresas,
         visualizaValor,
         handleVisualizaValor,
+        handleActualDate,
 
         loadingPainel,
         setLoadingPainel,

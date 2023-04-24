@@ -15,21 +15,21 @@ interface OptionsProps {
 
 export const OptionsLeftSide = () => {
   const { user } = useAuth()
-  const { isSelected, setIsSelected } = useContext(InContext);
+  const { isSelected, setIsSelected, handleActualDate } = useContext(InContext);
 
 
   return (
     <Container selected={isSelected}>
       <ul>
         <li  >
-          <Link to="/painel" onClick={() => setIsSelected(1)} ><MdOutlineDashboardCustomize /><span>Painel</span></Link>
+          <Link to="/painel" onClick={() => { setIsSelected(1); handleActualDate() }} ><MdOutlineDashboardCustomize /><span>Painel</span></Link>
         </li>
         {
           !!user &&
             !!(user.id_nivel_permissao <= 2) ?
             (<>
               <li  >
-                <Link to="/painel/cadastro" onClick={() => setIsSelected(2)}>< MdOutlinePlaylistAdd /><span>Cadastro de metas</span></Link>
+                <Link to="/painel/cadastro" onClick={() => { setIsSelected(2) }}>< MdOutlinePlaylistAdd /><span>Cadastro de metas</span></Link>
               </li>
               <li >
                 <Link to="/painel/diarizacao" onClick={() => setIsSelected(3)}><VscGraph /><span>Relatório de diarização</span></Link>

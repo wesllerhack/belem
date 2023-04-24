@@ -196,8 +196,6 @@ export const CenterRegisterUserPage = () => {
   }, [user, selectedSetor])
 
 
-
-
   const handleGetUser = useCallback(async (id_user: number) => {
     const resp = await api.get(`api/users/${id_user}`)
 
@@ -212,7 +210,6 @@ export const CenterRegisterUserPage = () => {
     setSelectedFilial(resp.data[0].id_filial)
     setSelectedPermissao(resp.data[0].id_nivel_permissao)
   }, [handleInsertUser])
-
 
 
   return (

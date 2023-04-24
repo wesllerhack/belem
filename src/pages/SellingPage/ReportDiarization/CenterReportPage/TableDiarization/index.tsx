@@ -129,10 +129,10 @@ export const TableDiarization = () => {
                       <td>{diariaza.data_venda}</td>
                       <td>{diariaza.dia_da_semana}</td>
                       <td>{diariaza.data_venda_meta}</td>
-                      <td>{Number(diariaza.meta_venda).toLocaleString(`pt-br`, { style: `currency`, currency: `BRL` })}</td>
-                      <td>{diariaza.percentual} %</td>
                       <td>{Number(diariaza.valor_venda).toLocaleString(`pt-br`, { style: `currency`, currency: `BRL` })}</td>
                       <td>{diariaza.percentual} %</td>
+                      <td>{Number(diariaza.meta_venda).toLocaleString(`pt-br`, { style: `currency`, currency: `BRL` })}</td>
+                      <td>{!!diariaza.meta_venda ? diariaza.percentual : `0`} %</td>
                     </tr>
                   ))
                   }

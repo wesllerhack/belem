@@ -42,7 +42,7 @@ export const VendaMeta = () => {
     }
     const intervalId = setInterval(() => {
       pegaMeta()
-    }, 15000);
+    }, 18000);
 
     return () => clearInterval(intervalId);
 
