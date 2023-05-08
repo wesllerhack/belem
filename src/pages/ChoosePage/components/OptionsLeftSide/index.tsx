@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 
 import { VscGraph } from 'react-icons/vsc'
 import { MdOutlinePlaylistAdd, MdOutlineDashboardCustomize } from 'react-icons/md'
-import { FaUserEdit } from 'react-icons/fa'
+import { FaUserEdit, FaUser } from 'react-icons/fa'
+import { CgNotes } from 'react-icons/cg'
 
 import { Container } from './styles';
 import { InContext } from '../../../../context/DataContext'
@@ -22,14 +23,17 @@ export const OptionsLeftSide = () => {
   return (
     <Container selected={isSelected}>
       <ul>
+        <li >
+          <Link to="/pages" onClick={() => setIsSelected(1)}><CgNotes /><span>Páginas</span></Link>
+        </li>
         <li  >
-          <Link to="/pages" onClick={() => setIsSelected(1)}><FaUserEdit /><span>Páginas</span></Link>
+          <Link to="/usuario" onClick={() => setIsSelected(2)}><FaUser /><span>Perfil</span></Link>
         </li>
         <li>
           {
             !!user &&
             !!(user.id_nivel_permissao === 1) &&
-            <Link to="/cadastro/usuario" onClick={() => setIsSelected(2)}><FaUserEdit /><span>Cadastro de usuário</span></Link>
+            <Link to="/cadastro/usuario" onClick={() => setIsSelected(3)}><FaUserEdit /><span>Cadastro de usuário</span></Link>
           }
         </li>
         <li  >

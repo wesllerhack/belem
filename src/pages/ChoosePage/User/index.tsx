@@ -1,18 +1,18 @@
 import React, { useContext, useEffect } from 'react'
 
 
-import { CenterRegisterUserPage } from './CenterRegisterUserPage'
+import { CenterUserPage } from './CenterUserPage'
 import { LeftPage } from '../LeftMainPage'
 
 import { Container } from './styles'
 import { InContext } from '../../../context/DataContext'
-export const RegisterUserPage = () => {
+export const UserPage = () => {
   const { setIsSelected } = useContext(InContext);
-  setIsSelected(3)
+  setIsSelected(2)
   return (
     <Container>
       <LeftPage />
-      <CenterRegisterUserPage />
+      <CenterUserPage />
     </Container>
   )
 }

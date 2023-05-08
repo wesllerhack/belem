@@ -19,7 +19,7 @@ interface User {
   id_filial: number;
   id_nivel_permissao: number;
   name: string;
-  sobrenome: string;
+  login: string;
   email: string;
   avatar_url: string;
 }

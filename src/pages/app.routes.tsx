@@ -20,6 +20,8 @@ import { SellingPageTV } from "./SellingPageTV";
 import { RegisterPageGoal } from './SellingPage/RegisterPageGoal/'
 import { ReportDiarization } from "./SellingPage/ReportDiarization";
 import { RegisterUserPage } from "./ChoosePage/RegisterUser";
+import { UserPage } from "./ChoosePage/User";
+
 
 export const AppRoutes = () => {
   const { user } = useAuth();
@@ -50,6 +52,7 @@ export const AppRoutes = () => {
                 <Route path="/painel/cadastro" element={<RegisterPageGoal />} />
                 <Route path="/painel/diarizacao" element={<ReportDiarization />} />
                 <Route path="/pages" element={<ChoosePage />} />
+                <Route path="/usuario" element={<UserPage />} />
                 <Route path="/dashboard" element={<MainPage />} />
                 {
                   !!user &&
